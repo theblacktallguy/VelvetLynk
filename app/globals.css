@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gold: 212 175 55; /* rgb */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+/* Base light theme */
+body {
+  background: #ffffff;
+  color: #18181b; /* zinc-900 */
+}
+
+/* Luxury subtle pattern (very faint) */
+.hero-pattern {
+  background-color: white;
+  background-image:
+    radial-gradient(rgba(212, 175, 55, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 22px 22px, 32px 32px;
+  background-position: 0 0, 10px 12px;
+}
+
+.gold-text {
+  color: rgb(var(--gold));
+}
+
+.gold-border {
+  border: 1px solid rgba(212, 175, 55, 0.45);
+}
+
+/* Utility-ish helpers */
+.card {
+  border: 1px solid rgba(24, 24, 27, 0.10);
+  background: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.card-muted {
+  background: linear-gradient(
+    180deg,
+    rgba(212, 175, 55, 0.07),
+    rgba(0, 0, 0, 0.01)
+  );
+}
+
+/* Dark mode (next-themes sets class="dark" on <html>) */
+html.dark body {
+  background: #09090b; /* zinc-950 */
+  color: #f4f4f5;      /* zinc-100 */
+}
+
+html.dark .card {
+  background: #09090b;
+  border-color: rgba(244, 244, 245, 0.12);
+}
+
+html.dark .hero-pattern {
+  background-color: #09090b;
+  background-image:
+    radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
