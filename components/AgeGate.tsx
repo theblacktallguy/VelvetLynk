@@ -76,7 +76,7 @@ export default function AgeGate({ enabled = true, rejectTo = "/ng" }: Props) {
         <div className="space-y-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
 
           <p>
-            SecretLink is a private adult platform intended strictly for individuals
+            VelvetLynk is a private adult platform intended strictly for individuals
             <span className="font-semibold text-zinc-900 dark:text-white"> 18 years or older</span>.
             This platform may contain adult-oriented material that could be inappropriate
             for minors. If you are under the legal age in your jurisdiction, you must
@@ -86,7 +86,7 @@ export default function AgeGate({ enabled = true, rejectTo = "/ng" }: Props) {
           <p>
             By continuing, you confirm that you are an adult accessing the platform
             voluntarily and that you agree to comply with all applicable laws and
-            SecretLink platform rules.
+            VelvetLynk platform rules.
           </p>
 
           <p>

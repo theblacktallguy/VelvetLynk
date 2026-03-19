@@ -56,7 +56,7 @@ export async function POST(req: Request) {
       const dataUrl = `data:${file.type};base64,${buffer.toString("base64")}`;
 
       const upload = await cloudinary.uploader.upload(dataUrl, {
-        folder: "secretlink/verification",
+        folder: "velvetlynk/verification",
         resource_type: "image",
       });
 

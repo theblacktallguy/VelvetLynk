@@ -13,7 +13,7 @@ export default async function DepositPage() {
     <main className="min-h-screen flex flex-col">
       <section className="hero-pattern">
         <div className="mx-auto w-full max-w-5xl px-4 pt-6 pb-6">
-          <CityHeader />
+          <CityHeader fallbackHref="/account" />
         </div>
       </section>
 

@@ -12,7 +12,7 @@ export default function CategorySeo({ city, state }: Props) {
 
       <p className="mb-3">
         Looking to meet new people, explore discreet companionship, or enjoy
-        private experiences in {city}? SecretLink connects verified adults in{" "}
+        private experiences in {city}? VelvetLynk connects verified adults in{" "}
         {city}, {state} through a secure and modern platform designed for
         privacy, safety and authenticity.
       </p>
@@ -21,7 +21,7 @@ export default function CategorySeo({ city, state }: Props) {
         Our platform allows you to browse real profiles, discover trusted
         listings, and communicate directly with individuals in your area.
         Whether you are interested in companionship, massage services,
-        friendships, casual dating or meaningful private encounters, SecretLink
+        friendships, casual dating or meaningful private encounters, VelvetLynk
         offers a structured and easy-to-use directory.
       </p>
 
@@ -34,7 +34,7 @@ export default function CategorySeo({ city, state }: Props) {
 
       <p>
         Start exploring today and discover trusted listings in {city}, {state}.
-        SecretLink is designed to give you control, privacy and confidence when
+        VelvetLynk is designed to give you control, privacy and confidence when
         making private connections.
       </p>
     </div>

@@ -6,7 +6,7 @@ export default function SeoSection() {
       </h3>
 
       <p className="mt-3 text-sm leading-6 ">
-        SecretLink is a modern adult classified platform designed to help
+        VelvetLynk is a modern adult classified platform designed to help
         verified adults connect privately and securely across Nigeria. Browse
         locations to explore trusted listings in your city, discover real people,
         and connect with confidence and discretion.
@@ -15,7 +15,7 @@ export default function SeoSection() {
       <p className="mt-3 text-sm leading-6 ">
         Whether you are searching for female escorts, male escorts, massage
         services, companionship, friends with benefits, or missed connections,
-        SecretLink provides a structured directory where privacy, safety, and
+        VelvetLynk provides a structured directory where privacy, safety, and
         authenticity come first.
       </p>
 

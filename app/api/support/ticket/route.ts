@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
 
     if (process.env.RESEND_API_KEY && adminEmail) {
       await resend.emails.send({
-        from: "SecretLink <onboarding@resend.dev>",
+        from: "velvetlynk <onboarding@resend.dev>",
         to: adminEmail,
         subject: `New Support Ticket — ${subject}`,
         text: [

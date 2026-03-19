@@ -17,7 +17,7 @@ export default function TermsPage() {
               Terms of Service
             </h1>
             <p className="text-sm ">
-              These terms govern your use of SecretLink. By using the platform, you agree to comply with these terms and applicable laws.
+              These terms govern your use of VelvetLynk. By using the platform, you agree to comply with these terms and applicable laws.
             </p>
           </header>
 

@@ -13,7 +13,7 @@ function buildVerifyEmailHtml(verifyUrl: string) {
             <tr>
               <td style="text-align:center;padding-bottom:20px;">
                 <h2 style="margin:0;color:#111;font-size:24px;">
-                  Verify your SecretLink email
+                  Verify your VelvetLynk email
                 </h2>
               </td>
             </tr>
@@ -21,7 +21,7 @@ function buildVerifyEmailHtml(verifyUrl: string) {
             <tr>
               <td style="font-size:15px;color:#333;line-height:1.6;">
                 <p style="margin-top:0;">
-                  Welcome to <strong>SecretLink</strong>.
+                  Welcome to <strong>VelvetLynk</strong>.
                 </p>
 
                 <p>
@@ -57,12 +57,12 @@ function buildVerifyEmailHtml(verifyUrl: string) {
                 <hr style="border:none;border-top:1px solid #eee;margin:30px 0;" />
 
                 <p style="font-size:13px;color:#666;">
-                  If you did not create a SecretLink account, you can safely ignore this email.
+                  If you did not create a VelvetLynk account, you can safely ignore this email.
                   No further action is required.
                 </p>
 
                 <p style="font-size:13px;color:#666;">
-                  This email was sent automatically by SecretLink. Please do not reply to this message.
+                  This email was sent automatically by VelvetLynk. Please do not reply to this message.
                 </p>
 
               </td>
@@ -81,10 +81,29 @@ export async function sendEmailVerificationEmail(params: {
   to: string;
   verifyUrl: string;
 }) {
-  return resend.emails.send({
+  console.log("RESEND_API_KEY present:", Boolean(process.env.RESEND_API_KEY));
+  console.log(
+    "RESEND_FROM_EMAIL:",
+    process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev"
+  );
+  console.log("Sending verification email to:", params.to);
+
+  const result = await resend.emails.send({
     from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
     to: params.to,
-    subject: "Verify your SecretLink email address",
+    subject: "Verify your VelvetLynk email address",
     html: buildVerifyEmailHtml(params.verifyUrl),
   });
+
+  console.log("Resend verification email result:", result);
+
+  if ((result as any)?.error) {
+    console.error(
+      "Resend verification email error:",
+      (result as any).error
+    );
+    throw new Error("Verification email failed to send");
+  }
+
+  return result;
 }

@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 import SessionRevocationGuard from "@/components/auth/SessionRevocationGuard";
 
 export const metadata: Metadata = {
-  title: "SecretLink",
+  title: "VelvetLynk",
   description:
-    "SecretLink is a modern and secure platform designed for adults seeking private and verified connections across Nigeria.",
+    "VelvetLynk is a modern and secure platform designed for adults seeking private and verified connections across Nigeria.",
 };
 
 export default function RootLayout({

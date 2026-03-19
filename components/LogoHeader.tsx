@@ -23,12 +23,12 @@ export default function LogoHeader() {
   return (
     <div className="text-center">
       <div className="mx-auto flex items-center justify-center gap-3">
-        <Image src={logoSrc} alt="SecretLink" width={56} height={56} priority />
+        <Image src={logoSrc} alt="VelvetLynk" width={56} height={56} priority />
 
         <div className="leading-none">
           <div className="text-3xl font-semibold tracking-tight">
-            <span className="gold-text">Secret</span>{" "}
-            <span className="text-red-600">Link</span>
+            <span className="gold-text">Velvet</span>{" "}
+            <span className="text-red-600">Lynk</span>
           </div>
 
           <div className="text-xs tracking-[0.28em] text-zinc-500 dark:text-zinc-500">
@@ -38,7 +38,7 @@ export default function LogoHeader() {
       </div>
 
       <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 ">
-        Welcome to SecretLink, a modern and secure platform designed for adults
+        Welcome to VelvetLynk, a modern and secure platform designed for adults
         seeking private and verified connections. Discover real people, trusted
         listings, and discreet encounters in your city.
       </p>

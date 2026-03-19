@@ -17,7 +17,7 @@ export default function SafetyPage() {
               Safety Center
             </h1>
             <p className="text-sm ">
-              Safety is a core part of SecretLink. This page explains practical steps to protect yourself,
+              Safety is a core part of VelvetLynk. This page explains practical steps to protect yourself,
               identify suspicious behavior, and report issues quickly.
             </p>
           </header>

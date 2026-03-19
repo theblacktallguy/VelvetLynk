@@ -195,8 +195,14 @@ export async function POST(req: Request) {
     where: { id: session.user.id },
     select: {
       id: true,
+      userSlug: true,
       email: true,
       emailVerified: true,
+      referredById: true,
+
+      // 🔴 ADD THIS (required for 700 logic)
+      referralFirstAdBonusClaimed: true,
+
       wallet: {
         select: {
           id: true,
@@ -310,6 +316,7 @@ export async function POST(req: Request) {
         throw new Error("WALLET_NOT_FOUND");
       }
 
+
       const ad = await tx.ad.create({
         data: {
           ownerId: user.id,
@@ -337,6 +344,106 @@ export async function POST(req: Request) {
         select: { id: true, title: true },
       });
 
+      const existingAdCount = await tx.ad.count({
+        where: { ownerId: user.id },
+      });
+
+      // 700 referral bonus payout trigger (first ad only)
+      if (user.referredById && existingAdCount === 1) {
+        const referral = await tx.referral.findUnique({
+          where: {
+            referredUserId: user.id,
+          },
+          select: {
+            id: true,
+            referrerId: true,
+            firstAdRewardClaimed: true,
+          },
+        });
+
+        if (referral && !referral.firstAdRewardClaimed) {
+          const referrer = await tx.user.findUnique({
+            where: { id: referral.referrerId },
+            select: {
+              id: true,
+              verified: true,
+              wallet: {
+                select: {
+                  id: true,
+                  credits: true,
+                },
+              },
+            },
+          });
+
+          if (referrer?.verified) {
+            const firstAdReferralClaim = await tx.referral.updateMany({
+              where: {
+                id: referral.id,
+                firstAdRewardClaimed: false,
+              },
+              data: {
+                firstAdRewardClaimed: true,
+                firstAdRewardClaimedAt: new Date(),
+              },
+            });
+
+            if (firstAdReferralClaim.count === 1) {
+              const referralBonus = 700;
+
+              const referrerWallet = referrer.wallet
+                ? referrer.wallet
+                : await tx.wallet.create({
+                    data: {
+                      userId: referrer.id,
+                      credits: 0,
+                    },
+                    select: {
+                      id: true,
+                      credits: true,
+                    },
+                  });
+
+              const newBalance = referrerWallet.credits + referralBonus;
+
+              await tx.wallet.update({
+                where: { id: referrerWallet.id },
+                data: {
+                  credits: {
+                    increment: referralBonus,
+                  },
+                },
+              });
+
+              await tx.walletTransaction.create({
+                data: {
+                  walletId: referrerWallet.id,
+                  userId: referrer.id,
+                  type: "REFERRAL_BONUS",
+                  amount: 0,
+                  credits: referralBonus,
+                  balanceAfter: newBalance,
+                  status: "COMPLETED",
+                  description: `Referral reward: @${user.userSlug} posted first ad`,
+                  reference: `referral_first_ad_bonus_${user.id}`,
+                  provider: "SYSTEM",
+                  metadata: {
+                    source: "REFERRAL_FIRST_AD_STAGE",
+                    referralId: referral.id,
+                    referredUserId: user.id,
+                    referredUserSlug: user.userSlug,
+                    stage: "FIRST_AD",
+                    stageCredits: 700,
+                    verificationStageCredits: 300,
+                    totalReferralCredits: 1000,
+                  },
+                },
+              });
+            }
+          }
+        }
+      }
+
       await tx.walletTransaction.create({
         data: {
           walletId: updatedWallet.id,
@@ -353,6 +460,10 @@ export async function POST(req: Request) {
 
       return ad;
     });
+
+    if (!result) {
+      return NextResponse.json({ error: "Failed to publish ad." }, { status: 500 });
+    }
 
     return NextResponse.json({
       ok: true,

@@ -1,3 +1,6 @@
 git add .
-git commit -m "update files"
+git commit -m "build referal program"
 git push
+
+
+rm -rf .next

@@ -142,7 +142,7 @@ export default async function ProfilePage({
   const profile = {
     userSlug: dbUser.userSlug,
     fullName:
-      titleCaseFromSlug(dbUser.userSlug.replace(/_/g, "-")) || "SecretLink User",
+      titleCaseFromSlug(dbUser.userSlug.replace(/_/g, "-")) || "VelvetLynk User",
     username: dbUser.userSlug,
     verified: dbUser.verified,
     city: dbUser.profile?.city ?? "",

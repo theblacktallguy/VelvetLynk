@@ -76,7 +76,7 @@ export default async function VerificationPage({
     <main className="min-h-screen flex flex-col">
       <section className="hero-pattern">
         <div className="mx-auto w-full max-w-5xl px-4 pt-6 pb-6">
-          <CityHeader />
+          <CityHeader fallbackHref="/account" />
         </div>
       </section>
 
@@ -86,8 +86,9 @@ export default async function VerificationPage({
             <h1 className="text-2xl font-bold">Verification</h1>
             <p className="mt-2 text-sm">
               Manage your account verification status. Email verification is
-              required before you can post ads. Level 2 verification gives your
-              profile an extra trust signal.
+              required before you can post ads. Complete Level 2 verification to
+              unlock a stronger trust badge and receive 2,000 bonus credits
+              after approval.
             </p>
           </div>
 
@@ -134,7 +135,7 @@ export default async function VerificationPage({
                 </div>
 
                 {!emailVerified ? (
-                  <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-amber-500 dark:text-amber-500">
+                  <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs">
                     Your email is not verified yet. You must verify it before
                     posting an ad.
                   </div>
@@ -160,7 +161,8 @@ export default async function VerificationPage({
                     Level 2 verification
                   </h2>
                   <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-400">
-                    Manual profile verification for a stronger trust badge.
+                    Manual profile verification for a stronger trust badge. Once
+                    approved, 2,000 bonus credits will be added to your wallet.
                   </p>
                 </div>
 
@@ -172,9 +174,20 @@ export default async function VerificationPage({
                       : "border-amber-500/30 bg-amber-500/50",
                   ].join(" ")}
                 >
-                  {levelTwoVerified ? "Verified" : "Notverified"}
+                  {levelTwoVerified ? "Verified" : "Not verified"}
                 </span>
               </div>
+
+              {!levelTwoVerified && (
+                <div className="mt-4 rounded-xl border border-amber-200 text-sm bg-amber-500/10 p-4 ">
+                  <div className="font-semibold">Verification Reward</div>
+                  <div className="mt-1">
+                    Complete Level 2 verification and receive{" "}
+                    <span className="font-bold">2,000 bonus credits</span> in
+                    your wallet after approval.
+                  </div>
+                </div>
+              )}
 
               <div className="mt-4 space-y-3 text-sm">
                 <p>Level 2 verification is reviewed manually. You will submit:</p>
@@ -182,8 +195,8 @@ export default async function VerificationPage({
                 <ul className="list-disc space-y-1 pl-5">
                   <li>A clear selfie photo</li>
                   <li>
-                    A second photo holding a paper showing your username, current phone number and the
-                    current date
+                    A second photo holding a paper showing your username,
+                    current phone number and the current date
                   </li>
                 </ul>
 
@@ -199,6 +212,8 @@ export default async function VerificationPage({
                 {sp?.success === "submitted" ? (
                   <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/50 p-3 text-sm">
                     Your verification request has been submitted successfully.
+                    Once approved, 2,000 bonus credits will be added to your
+                    wallet.
                   </div>
                 ) : null}
 
@@ -216,17 +231,21 @@ export default async function VerificationPage({
 
                 {sp?.error === "email_not_verified" ? (
                   <div className="rounded-xl border border-red-500/30 bg-red-500/50 p-3 text-sm">
-                    Please verify your email before submitting Level 2 verification.
+                    Please verify your email before submitting Level 2
+                    verification.
                   </div>
                 ) : null}
 
                 {levelTwoVerified ? (
                   <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/50 p-3 text-sm">
-                    Your account has passed Level 2 verification.
+                    Your account has passed Level 2 verification. Your 2,000
+                    bonus credits will be available in your wallet once your
+                    reward is processed.
                   </div>
                 ) : latestRequest?.status === "PENDING" ? (
                   <div className="rounded-xl border border-amber-500/30 bg-amber-500/50 p-3 text-sm">
-                    Your verification request is pending review.
+                    Your verification request is pending review. Once approved,
+                    2,000 bonus credits will be added to your wallet.
                   </div>
                 ) : latestRequest?.status === "REJECTED" ? (
                   <div className="space-y-3">
@@ -234,7 +253,9 @@ export default async function VerificationPage({
                       Your last verification request was rejected.
                       {latestRequest.reviewNote
                         ? ` Reason: ${latestRequest.reviewNote}`
-                        : ""}
+                        : ""}{" "}
+                      Resubmit to continue and unlock your 2,000-credit
+                      verification reward.
                     </div>
                     <LevelTwoVerificationForm />
                   </div>
@@ -246,35 +267,29 @@ export default async function VerificationPage({
           </div>
 
           <div className="card p-5 bg-white/80 dark:bg-zinc-900/40">
-            <h2 className="text-lg font-bold pry-3">
-              What verification unlocks
-            </h2>
+            <h2 className="text-lg font-bold py-3">What verification unlocks</h2>
 
             <div className="mt-4 grid gap-4 md:grid-cols-3">
               <div className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
-                <div className="text-sm font-semibold">
-                  Email verified
-                </div>
+                <div className="text-sm font-semibold">Email verified</div>
                 <div className="mt-2 text-sm text-zinc-700 dark:text-zinc-400">
                   Required before posting ads.
                 </div>
               </div>
 
               <div className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
-                <div className="text-sm font-semibold">
-                  Better trust
-                </div>
+                <div className="text-sm font-semibold">2,000 bonus credits</div>
                 <div className="mt-2 text-sm text-zinc-700 dark:text-zinc-400">
-                  Verified accounts look safer and more credible to visitors.
+                  Earn 2,000 credits in your wallet after your Level 2
+                  verification is approved.
                 </div>
               </div>
 
               <div className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
-                <div className="text-sm font-semibold">
-                  Level 2 badge
-                </div>
+                <div className="text-sm font-semibold">Level 2 badge</div>
                 <div className="mt-2 text-sm text-zinc-700 dark:text-zinc-400">
-                  Manual approval gives an extra trust badge on your profile.
+                  Manual approval gives your profile an extra trust badge and a
+                  stronger credibility signal.
                 </div>
               </div>
             </div>

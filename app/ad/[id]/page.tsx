@@ -49,7 +49,7 @@ export async function generateMetadata({
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
-    "https://secretlink.com";
+    "https://velvetlynk.com";
 
   const title = ad.title;
   const description =

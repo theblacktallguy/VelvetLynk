@@ -37,7 +37,7 @@ export default async function ReportPage({
           <div>
             <h1 className="text-2xl font-semibold">Report Ad</h1>
             <p className="mt-1 text-sm">
-              Help us keep SecretLink safer. Reports are reviewed for policy violations.
+              Help us keep VelvetLynk safer. Reports are reviewed for policy violations.
             </p>
           </div>
 

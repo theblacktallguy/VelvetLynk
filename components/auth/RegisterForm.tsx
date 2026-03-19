@@ -25,10 +25,16 @@ function Spinner() {
 export default function RegisterForm() {
   const router = useRouter();
   const sp = useSearchParams();
+
   const callbackUrl = useMemo(
     () => sp.get("callbackUrl") || "/account?welcome=1",
     [sp]
   );
+
+  const referralSlug = useMemo(() => {
+    const ref = sp.get("ref")?.trim().toLowerCase() || "";
+    return slugifyUsername(ref);
+  }, [sp]);
 
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
@@ -68,6 +74,7 @@ export default function RegisterForm() {
         email: email.trim().toLowerCase(),
         password,
         confirmPassword,
+        referralSlug: referralSlug || null,
       }),
     });
 
@@ -101,10 +108,16 @@ export default function RegisterForm() {
     <div className="card p-5 relative">
       <div className="mb-4">
         <h1 className="text-2xl font-semibold">Create account</h1>
-        <p className="mt-1 text-sm ">
+        <p className="mt-1 text-sm">
           Build your profile, get verified, and post ads.
         </p>
       </div>
+
+      {referralSlug ? (
+        <div className="mb-4 rounded-lg border border-amber-500/30 px-3 py-2 text-sm bg-amber-400/40">
+          You were invited by <span className="font-semibold">@{referralSlug}</span>.
+        </div>
+      ) : null}
 
       <form onSubmit={onSubmit} className="space-y-3">
         <div>

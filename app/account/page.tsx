@@ -6,6 +6,7 @@ import ProfileCompletionCard from "@/components/account/ProfileCompletionCard";
 import AccountBioCard from "@/components/account/AccountBioCard";
 import AdsManager from "@/components/account/AdsManager";
 import VerificationCard from "@/components/account/VerificationCard";
+import ReferralCard from "@/components/account/ReferralCard";
 import WalletCard from "@/components/account/WalletCard";
 import SettingsSecurityCard from "@/components/account/SettingsSecurityCard";
 import SupportCard from "@/components/account/SupportCard";
@@ -90,6 +91,13 @@ export default async function AccountPage({
         },
       },
       wallet: { select: { credits: true } },
+      referralsMade: {
+        select: {
+          id: true,
+          verificationRewardClaimed: true,
+          firstAdRewardClaimed: true,
+        },
+      },
     },
   });
 
@@ -116,6 +124,14 @@ export default async function AccountPage({
     .slice(0, 4);
   const bio = user.profile?.bio || "";
   const credits = user.wallet?.credits ?? 0;
+
+  const referralCount = user.referralsMade.length;
+  const verificationRewardsCount = user.referralsMade.filter(
+    (ref) => ref.verificationRewardClaimed
+  ).length;
+  const firstAdRewardsCount = user.referralsMade.filter(
+    (ref) => ref.firstAdRewardClaimed
+  ).length;
 
   const contact = {
     phone: user.profile?.phone || undefined,
@@ -267,6 +283,13 @@ export default async function AccountPage({
               
 
               <VerificationCard verified={verified} />
+              <ReferralCard
+                verified={verified}
+                userSlug={userSlug}
+                referralCount={referralCount}
+                verificationRewardsCount={verificationRewardsCount}
+                firstAdRewardsCount={firstAdRewardsCount}
+              />
               <SettingsSecurityCard />
               <SupportCard />
             </div>

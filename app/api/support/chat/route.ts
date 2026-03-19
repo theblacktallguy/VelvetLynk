@@ -9,7 +9,7 @@ type ChatMessage = {
 };
 
 const SUPPORT_SYSTEM_PROMPT = `
-You are the SecretLink Support Assistant.
+You are the VelvetLynk Support Assistant.
 
 Your job is to help users with:
 - account login and settings

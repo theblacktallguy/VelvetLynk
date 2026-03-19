@@ -13,10 +13,10 @@ export default function AboutPage() {
         <div className="card p-6 bg-white/80 dark:bg-zinc-900/40 space-y-8">
           <header className="space-y-2 py-3">
             <h1 className="text-3xl font-bold ">
-              About SecretLink
+              About VelvetLynk
             </h1>
             <p className="text-sm ">
-              SecretLink is a location-first platform built to help adults discover connections,
+              VelvetLynk is a location-first platform built to help adults discover connections,
               browse profiles and listings, and communicate with clarity and confidence. We focus on
               a clean browsing experience, strong reporting tools, and transparent policies.
             </p>
@@ -32,7 +32,7 @@ export default function AboutPage() {
               low-quality listings, unclear expectations, poor safety guidance, and limited accountability.
             </p>
             <p className="text-sm ">
-              SecretLink was designed to improve those fundamentals: better structure, clearer categories,
+              VelvetLynk was designed to improve those fundamentals: better structure, clearer categories,
               profiles that encourage completeness, and a reporting system that can scale as the platform grows.
             </p>
           </section>
@@ -65,7 +65,7 @@ export default function AboutPage() {
               Project history
             </h2>
             <p className="text-sm ">
-              SecretLink started as a focused prototype: location pages, category browsing, ad details, and public
+              VelvetLynk started as a focused prototype: location pages, category browsing, ad details, and public
               profiles. The early goal was to build a stable foundation—routing, taxonomy, authentication, and a
               database schema that can grow into a full platform.
             </p>
@@ -81,7 +81,7 @@ export default function AboutPage() {
               The team
             </h2>
             <p className="text-sm ">
-              SecretLink is built by a small, product-focused team. We prioritize:
+              VelvetLynk is built by a small, product-focused team. We prioritize:
             </p>
             <ul className="list-disc pl-5 text-sm  space-y-1">
               <li>Fast iteration with careful attention to reliability and security</li>

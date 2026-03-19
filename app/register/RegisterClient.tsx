@@ -25,7 +25,7 @@ export default function RegisterClient() {
           <div className="card p-5" style={{ backgroundColor: "rgba(212,175,55,0.10)" }}>
             <div className="text-sm font-semibold">Already have an account?</div>
             <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-500">
-              Sign in to manage your profile, post ads, and buy SecretLink credits.
+              Sign in to manage your profile, post ads, and buy VelvetLynk credits.
             </p>
 
             <Link

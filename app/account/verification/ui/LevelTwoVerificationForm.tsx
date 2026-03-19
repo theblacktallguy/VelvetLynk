@@ -82,7 +82,7 @@ export default function LevelTwoVerificationForm() {
           Proof photo
         </label>
         <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
-          Upload a photo of yourself holding a paper that shows your SecretLink username and today’s date.
+          Upload a photo of yourself holding a paper that shows your VelvetLynk username and today’s date.
         </p>
 
         <label className="mt-3 inline-flex cursor-pointer rounded-xl border px-4 py-2 text-sm font-semibold gold-border hover:bg-[rgba(212,175,55,0.10)]">

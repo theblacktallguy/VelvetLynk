@@ -59,7 +59,7 @@ export default function ForgotPasswordPage() {
         <div className="mb-6">
           <h1 className="text-2xl font-semibold">Forgot password</h1>
           <p className="mt-2 text-sm ">
-            Enter the email address linked to your SecretLink account and we’ll
+            Enter the email address linked to your VelvetLynk account and we’ll
             send you a password reset link.
           </p>
         </div>

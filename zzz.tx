@@ -3,3 +3,10 @@ style={{ backgroundColor: "rgba(55, 212, 97, 1)" }}
 hover:bg-amber-600/60
 
 hover:bg-amber-600/60 hover:text-zinc-900
+
+bg-amber-400/40 text-zinc-900
+
+<CityHeader fallbackHref="/account" />
+
+npx prisma db push
+npx prisma generate

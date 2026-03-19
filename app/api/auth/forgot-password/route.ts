@@ -17,7 +17,7 @@ function normalizeEmail(email: string) {
 function buildResetPasswordEmailHtml(resetUrl: string) {
   return `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
-      <h2 style="margin-bottom: 12px;">Reset your SecretLink password</h2>
+      <h2 style="margin-bottom: 12px;">Reset your VelvetLynk password</h2>
       <p>We received a request to reset your password.</p>
       <p>
         <a
@@ -92,7 +92,7 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
       to: user.email,
-      subject: "Reset your SecretLink password",
+      subject: "Reset your VelvetLynk password",
       html: buildResetPasswordEmailHtml(resetUrl),
     });
 

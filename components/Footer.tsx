@@ -86,7 +86,7 @@ export default function Footer() {
 
       {/* Bottom: centered copyright */}
       <div className="mx-auto w-full max-w-5xl px-4 pb-8 text-xs text-center text-zinc-500 dark:text-zinc-400">
-        © {new Date().getFullYear()} SecretLink. All rights reserved.
+        © {new Date().getFullYear()} VelvetLynk. All rights reserved.
       </div>
     </footer>
   );

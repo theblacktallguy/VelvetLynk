@@ -54,10 +54,10 @@ export default function LoginClient() {
 
           {/* Right: Value prop */}
           <div className="card p-5" style={{ backgroundColor: "rgba(212,175,55,0.10)" }}>
-            <div className="text-sm font-semibold">New to SecretLink?</div>
+            <div className="text-sm font-semibold">New to VelvetLynk?</div>
             <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-500">
               Create an account to post ads, build a verified profile, and manage
-              your SecretLink credits.
+              your VelvetLynk credits.
             </p>
 
             <Link

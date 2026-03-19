@@ -47,7 +47,7 @@ export async function POST(req: Request) {
       const dataUrl = `data:${entry.type};base64,${buffer.toString("base64")}`;
 
       const result = await cloudinary.uploader.upload(dataUrl, {
-        folder: `secretlink/ads/${session.user.id}`,
+        folder: `velvetlynk/ads/${session.user.id}`,
         resource_type: "image",
         transformation: [
           { width: 1200, crop: "limit" },

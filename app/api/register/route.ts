@@ -6,7 +6,6 @@ import { sendVerificationEmailForUser } from "@/lib/send-email-verification";
 import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
 import { rateLimitExceeded } from "@/lib/rate-limit-response";
 
-
 export async function POST(req: Request) {
   try {
     const ip = getRequestIp(req);
@@ -21,6 +20,7 @@ export async function POST(req: Request) {
     if (!rl.allowed) {
       return rateLimitExceeded(rl.resetAt);
     }
+
     const body = await req.json();
 
     const fullName = String(body.fullName ?? "").trim();
@@ -28,33 +28,47 @@ export async function POST(req: Request) {
     const usernameRaw = String(body.username ?? "").trim();
     const password = String(body.password ?? "");
     const confirmPassword = String(body.confirmPassword ?? "");
+    const referralSlugRaw = String(body.referralSlug ?? "").trim().toLowerCase();
 
-    // Basic validation
     if (!fullName || fullName.length < 2) {
-      return NextResponse.json({ ok: false, error: "Full name is required." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Full name is required." },
+        { status: 400 }
+      );
     }
 
     const userSlug = slugifyUserSlug(usernameRaw);
     if (!isValidUserSlug(userSlug)) {
       return NextResponse.json(
-        { ok: false, error: "Username must be 3–24 chars, lowercase, may include hyphens only." },
+        {
+          ok: false,
+          error: "Username must be 3–24 chars, lowercase, may include hyphens only.",
+        },
         { status: 400 }
       );
     }
 
     if (!email.includes("@")) {
-      return NextResponse.json({ ok: false, error: "Enter a valid email." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Enter a valid email." },
+        { status: 400 }
+      );
     }
 
     if (password.length < 8) {
-      return NextResponse.json({ ok: false, error: "Password must be at least 8 characters." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Password must be at least 8 characters." },
+        { status: 400 }
+      );
     }
 
     if (password !== confirmPassword) {
-      return NextResponse.json({ ok: false, error: "Passwords do not match." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Passwords do not match." },
+        { status: 400 }
+      );
     }
 
-    // Uniqueness checks
     const existing = await prisma.user.findFirst({
       where: {
         OR: [{ email }, { userSlug }],
@@ -63,24 +77,73 @@ export async function POST(req: Request) {
     });
 
     if (existing) {
-      return NextResponse.json({ ok: false, error: "Email or username already registered." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Email or username already registered." },
+        { status: 400 }
+      );
+    }
+
+    let referredById: string | undefined = undefined;
+
+    if (referralSlugRaw) {
+      const referralSlug = slugifyUserSlug(referralSlugRaw);
+
+      if (referralSlug && referralSlug !== userSlug) {
+        const referrer = await prisma.user.findUnique({
+          where: { userSlug: referralSlug },
+          select: {
+            id: true,
+            verified: true,
+            email: true,
+            userSlug: true,
+          },
+        });
+
+        if (referrer && referrer.verified) {
+          const sameEmail =
+            referrer.email && referrer.email.toLowerCase() === email;
+
+          if (!sameEmail) {
+            referredById = referrer.id;
+          }
+        }
+      }
     }
 
     const passwordHash = await bcrypt.hash(password, 12);
 
-    const user = await prisma.user.create({
-      data: {
-        name: fullName,
-        email,
-        userSlug,
-        passwordHash,
-        verified: false,
+    const user = await prisma.$transaction(async (tx) => {
+      const createdUser = await tx.user.create({
+        data: {
+          name: fullName,
+          email,
+          userSlug,
+          passwordHash,
+          verified: false,
+          referredById,
 
-        // ✅ create empty related rows so UI always has real data objects
-        profile: { create: {} },
-        wallet: { create: { credits: 0 } },
-      },
-      select: { id: true, email: true, userSlug: true, name: true },
+          profile: { create: {} },
+          wallet: { create: { credits: 0 } },
+        },
+        select: {
+          id: true,
+          email: true,
+          userSlug: true,
+          name: true,
+          referredById: true,
+        },
+      });
+
+      if (referredById) {
+        await tx.referral.create({
+          data: {
+            referrerId: referredById,
+            referredUserId: createdUser.id,
+          },
+        });
+      }
+
+      return createdUser;
     });
 
     if (user.email) {

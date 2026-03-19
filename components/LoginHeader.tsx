@@ -51,15 +51,15 @@ export default function LoginHeader() {
         <Link href="/ng" className="flex items-center gap-3">
           <Image
             src={logoSrc}
-            alt="SecretLink"
+            alt="VelvetLynk"
             width={44}
             height={44}
             priority
           />
           <div className="leading-none text-center">
             <div className="text-2xl font-semibold tracking-tight">
-              <span className="gold-text">Secret</span>
-              <span className="text-red-600">Link</span>
+              <span className="gold-text">Velvet</span>
+              <span className="text-red-600">Lynk</span>
             </div>
             <div className="text-[10px] tracking-[0.28em] text-zinc-500 dark:text-zinc-500">
               NIGERIA

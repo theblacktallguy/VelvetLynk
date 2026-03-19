@@ -25,7 +25,7 @@ export default function SupportChat() {
     {
       role: "bot",
       text:
-        "Hi — I’m the SecretLink assistant. Ask me anything about using the app. " +
+        "Hi — I’m the VelvetLynk assistant. Ask me anything about using the app. " +
         "If you need a human, you can request support and we’ll create a ticket.",
     },
   ]);
