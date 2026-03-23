@@ -10,3 +10,6 @@ bg-amber-400/40 text-zinc-900
 
 npx prisma db push
 npx prisma generate
+
+
+* 24 * 60 * 60 * 1000

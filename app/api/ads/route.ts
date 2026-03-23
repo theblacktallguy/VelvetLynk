@@ -348,6 +348,8 @@ export async function POST(req: Request) {
         where: { ownerId: user.id },
       });
 
+      const isFirstAd = existingAdCount === 0;
+
       // 700 referral bonus payout trigger (first ad only)
       if (user.referredById && existingAdCount === 1) {
         const referral = await tx.referral.findUnique({
@@ -356,14 +358,14 @@ export async function POST(req: Request) {
           },
           select: {
             id: true,
-            referrerId: true,
+            referrerUserId: true,
             firstAdRewardClaimed: true,
           },
         });
 
         if (referral && !referral.firstAdRewardClaimed) {
           const referrer = await tx.user.findUnique({
-            where: { id: referral.referrerId },
+            where: { id: referral.referrerUserId },
             select: {
               id: true,
               verified: true,

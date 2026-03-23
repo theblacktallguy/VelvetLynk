@@ -137,9 +137,13 @@ export async function POST(req: Request) {
       if (referredById) {
         await tx.referral.create({
           data: {
-            referrerId: referredById,
-            referredUserId: createdUser.id,
-          },
+            referrer: {
+              connect: { id: referredById },
+            },
+            referredUser: {
+              connect: { id: createdUser.id },
+            },
+          }
         });
       }
 

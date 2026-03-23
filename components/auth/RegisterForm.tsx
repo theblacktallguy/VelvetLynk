@@ -187,13 +187,13 @@ export default function RegisterForm() {
         </div>
 
         {err ? (
-          <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-600">
+          <div className="rounded-lg border border-red-500/30 bg-red-600 px-3 py-2 text-sm text-white">
             {err}
           </div>
         ) : null}
 
         {ok ? (
-          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-700 dark:text-emerald-300">
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-600 px-3 py-2 text-sm text-white">
             {ok}
           </div>
         ) : null}
