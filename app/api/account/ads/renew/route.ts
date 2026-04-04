@@ -126,6 +126,7 @@ export async function PATCH(req: Request) {
         select: {
           id: true,
           credits: true,
+          userId: true,
         },
       });
 
@@ -147,8 +148,10 @@ export async function PATCH(req: Request) {
       await tx.walletTransaction.create({
         data: {
           walletId: updatedWallet.id,
+          userId: updatedWallet.userId,
           type: "AD_RENEW",
           amount: -totalCost,
+          credits: 0,
           balanceAfter: updatedWallet.credits,
           status: "COMPLETED",
           description: "Renewed expired ad",

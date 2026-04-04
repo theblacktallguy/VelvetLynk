@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic"; // 👈 ADD THIS
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
@@ -8,33 +10,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const now = new Date();
 
-  const ads = await prisma.ad.findMany({
-    where: {
-      status: "ACTIVE",
-    },
-    select: {
-      id: true,
-      updatedAt: true,
-    },
-    orderBy: {
-      updatedAt: "desc",
-    },
-  });
+  let ads: { id: string; updatedAt: Date }[] = [];
+  let profiles: { userSlug: string | null; updatedAt: Date }[] = [];
 
-  const profiles = await prisma.user.findMany({
-    where: {
-      profile: {
-        isNot: null,
+  try {
+    ads = await prisma.ad.findMany({
+      where: {
+        status: "ACTIVE",
+        OR: [
+          { expiresAt: null },
+          { expiresAt: { gt: new Date() } },
+        ],
       },
-    },
-    select: {
-      userSlug: true,
-      updatedAt: true,
-    },
-    orderBy: {
-      updatedAt: "desc",
-    },
-  });
+      select: {
+        id: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+
+    profiles = await prisma.user.findMany({
+      where: {
+        profile: {
+          isNot: null,
+        },
+      },
+      select: {
+        userSlug: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+  } catch (error) {
+    console.error("Sitemap DB error:", error);
+  }
 
   const adEntries: MetadataRoute.Sitemap = ads.map((ad) => ({
     url: `${siteUrl}/ad/${ad.id}`,
@@ -48,7 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .map((user) => ({
       url: `${siteUrl}/profile/${user.userSlug}`,
       lastModified: user.updatedAt,
-      changeFrequency: "weekly" as const,
+      changeFrequency: "weekly",
       priority: 0.7,
     }));
 

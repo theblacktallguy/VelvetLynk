@@ -189,15 +189,15 @@ export async function approveVerificationRequest(formData: FormData) {
           referredUserId: approvedUser.id,
         },
         select: {
-          id: true,
-          referrerId: true,
-          verificationRewardClaimed: true,
-        },
+        id: true,
+        referrerUserId: true,
+        verificationRewardClaimed: true,
+      }
       });
 
       if (referral && !referral.verificationRewardClaimed) {
         const referrer = await tx.user.findUnique({
-          where: { id: referral.referrerId },
+          where: { id: referral.referrerUserId },
           select: {
             id: true,
             verified: true,
