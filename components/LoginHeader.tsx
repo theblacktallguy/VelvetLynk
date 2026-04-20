@@ -49,13 +49,7 @@ export default function LoginHeader() {
 
         {/* Logo -> homepage */}
         <Link href="/ng" className="flex items-center gap-3">
-          <Image
-            src={logoSrc}
-            alt="VelvetLynk"
-            width={44}
-            height={44}
-            priority
-          />
+          <Image src={logoSrc} alt="VelvetLynk" width={44} height={44} priority className="w-11 h-11" />
           <div className="leading-none text-center">
             <div className="text-2xl font-semibold tracking-tight">
               <span className="gold-text">Velvet</span>

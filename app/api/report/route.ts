@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
 
     if (process.env.RESEND_API_KEY && adminEmail) {
       await resend.emails.send({
-        from: "VelvetLynk <onboarding@resend.dev>",
+        from: "VelvetLynk <noreply@velvetlynk.com>",
         to: adminEmail,
         subject: `New Report (${reason}) — Ad ${adId}`,
         text: [

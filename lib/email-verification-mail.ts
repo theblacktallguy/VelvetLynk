@@ -84,12 +84,12 @@ export async function sendEmailVerificationEmail(params: {
   console.log("RESEND_API_KEY present:", Boolean(process.env.RESEND_API_KEY));
   console.log(
     "RESEND_FROM_EMAIL:",
-    process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev"
+    process.env.RESEND_FROM_EMAIL || "VelvetLynk <noreply@velvetlynk.com>"
   );
   console.log("Sending verification email to:", params.to);
 
   const result = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+    from: process.env.RESEND_FROM_EMAIL || "VelvetLynk <noreply@velvetlynk.com>",
     to: params.to,
     subject: "Verify your VelvetLynk email address",
     html: buildVerifyEmailHtml(params.verifyUrl),

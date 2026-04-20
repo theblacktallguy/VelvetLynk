@@ -90,7 +90,9 @@ export async function POST(req: Request) {
     const resetUrl = `${appUrl.replace(/\/+$/, "")}/reset-password?token=${encodeURIComponent(rawToken)}`;
 
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+      from:
+      process.env.RESEND_FROM_EMAIL ||
+      "VelvetLynk <noreply@velvetlynk.com>",
       to: user.email,
       subject: "Reset your VelvetLynk password",
       html: buildResetPasswordEmailHtml(resetUrl),

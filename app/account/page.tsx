@@ -120,17 +120,19 @@ export default async function AccountPage({
   // ✅ Real DB values (with safe fallbacks)
   const avatarSrc = user.profile?.avatarUrl || "/assets/avatar.jpg";
     const photos = (user.profile?.photoUrls || [])
-    .filter((url) => Boolean(url) && url !== user.profile?.avatarUrl)
+    .filter((url: string) => Boolean(url) && url !== user.profile?.avatarUrl)
     .slice(0, 4);
   const bio = user.profile?.bio || "";
   const credits = user.wallet?.credits ?? 0;
 
   const referralCount = user.referralsMade.length;
   const verificationRewardsCount = user.referralsMade.filter(
-    (ref) => ref.verificationRewardClaimed
+    (ref: { verificationRewardClaimed: boolean }) =>
+      ref.verificationRewardClaimed
   ).length;
   const firstAdRewardsCount = user.referralsMade.filter(
-    (ref) => ref.firstAdRewardClaimed
+    (ref: { firstAdRewardClaimed: boolean }) =>
+      ref.firstAdRewardClaimed
   ).length;
 
   const contact = {
@@ -199,14 +201,26 @@ export default async function AccountPage({
   };
 
   const activeCount = rawAds.filter(
-    (ad) => getDisplayStatus(ad) === "ACTIVE"
+    (ad: {
+      status: AdStatus;
+      expiresAt: Date | null;
+    }) => getDisplayStatus(ad) === "ACTIVE"
   ).length;
 
   const expiredCount = rawAds.filter(
-    (ad) => getDisplayStatus(ad) === "EXPIRED"
+    (ad: {
+      status: AdStatus;
+      expiresAt: Date | null;
+    }) => getDisplayStatus(ad) === "EXPIRED"
   ).length;
 
-  const recentAds: AdSummary[] = rawAds.slice(0, 5).map((ad) => ({
+  const recentAds: AdSummary[] = rawAds.slice(0, 5).map((ad: {
+    id: string;
+    title: string;
+    status: AdStatus;
+    createdAt: Date;
+    expiresAt: Date | null;
+  }) => ({
     id: ad.id,
     title: ad.title,
     status: getDisplayStatus(ad),

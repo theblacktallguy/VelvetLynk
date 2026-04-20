@@ -166,7 +166,7 @@ export async function sendLevelTwoApprovedEmail(params: {
   userSlug: string;
 }) {
   const result = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+    from: process.env.RESEND_FROM_EMAIL || "VelvetLynk <noreply@velvetlynk.com>",
     to: params.to,
     subject: "Your VelvetLynk verification was approved",
     html: buildApprovedHtml(params),
@@ -186,7 +186,7 @@ export async function sendLevelTwoRejectedEmail(params: {
   reviewNote?: string | null;
 }) {
   const result = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+    from: process.env.RESEND_FROM_EMAIL || "VelvetLynk <noreply@velvetlynk.com>",
     to: params.to,
     subject: "Your VelvetLynk verification was not approved",
     html: buildRejectedHtml(params),
@@ -206,7 +206,7 @@ export async function sendVerificationBonusCreditedEmail(params: {
   credits: number;
 }) {
   const result = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+    from: process.env.RESEND_FROM_EMAIL || "VelvetLynk <noreply@velvetlynk.com>",
     to: params.to,
     subject: `${params.credits} credits added to your VelvetLynk wallet`,
     html: buildVerificationBonusHtml(params),

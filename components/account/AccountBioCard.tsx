@@ -13,7 +13,7 @@ export default function AccountBioCard({ bio }: { bio: string }) {
         </div>
 
         <Link
-          href="/account/edit#bio"
+          href="/account/profile/edit#bio"
           className="inline-flex items-center justify-center rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-colors gold-border hover:bg-amber-600/60"
           aria-label="Edit bio"
           title="Edit bio"

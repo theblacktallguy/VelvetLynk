@@ -23,7 +23,7 @@ export default function LogoHeader() {
   return (
     <div className="text-center">
       <div className="mx-auto flex items-center justify-center gap-3">
-        <Image src={logoSrc} alt="VelvetLynk" width={56} height={56} priority />
+        <Image src={logoSrc} alt="VelvetLynk" width={44} height={44} priority className="w-11 h-11" />
 
         <div className="leading-none">
           <div className="text-3xl font-semibold tracking-tight">
