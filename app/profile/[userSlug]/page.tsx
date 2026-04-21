@@ -5,7 +5,7 @@ import ProfileContactCard from "@/components/profile/ProfileContactCard";
 import ProfileAdsSection from "@/components/profile/ProfileAdsSection";
 import ProfileSafetyCard from "@/components/profile/ProfileSafetyCard";
 import type { Ad } from "@/components/ads/AdCard";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { prisma } from "@/lib/prisma";
 import { AdStatus } from "@prisma/client";
 
@@ -229,23 +229,28 @@ export default async function ProfilePage({
 
       <section className="mx-auto w-full max-w-5xl px-4 pb-10 flex-1">
         <div className="mt-6 text-sm text-zinc-700 dark:text-zinc-400">
-          <Link className="text-inherit hover:underline" href="/ng">
+          <LoadingLink
+            href="/ng"
+            className="text-inherit transition-all duration-200 hover:underline active:opacity-70"
+          >
             Nigeria
-          </Link>{" "}
+          </LoadingLink>{" "}
           <span className="mx-1">{">"}</span>
-          <Link
-            className="text-inherit hover:underline"
+
+          <LoadingLink
             href={`/ng/${profile.state.toLowerCase()}`}
+            className="text-inherit transition-all duration-200 hover:underline active:opacity-70"
           >
             {profile.state}
-          </Link>{" "}
+          </LoadingLink>{" "}
           <span className="mx-1">{">"}</span>
-          <Link
-            className="text-inherit hover:underline"
+
+          <LoadingLink
             href={`/ng/${profile.state.toLowerCase()}/${profile.city.toLowerCase()}`}
+            className="text-inherit transition-all duration-200 hover:underline active:opacity-70"
           >
             {profile.city}
-          </Link>{" "}
+          </LoadingLink>{" "}
           <span className="mx-1">{">"}</span>
           <span className="text-inherit">Profile</span>{" "}
           <span className="mx-1">{">"}</span>

@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -103,12 +103,12 @@ export default async function AdminTicketDetailPage({
           <div className="card p-5 bg-white/80 dark:bg-zinc-900/40">
             <div className="text-lg font-semibold">Ticket not found</div>
             <div className="mt-2 text-sm">This support ticket does not exist.</div>
-            <Link
+            <LoadingLink
               href="/admin/tickets"
-              className="mt-4 inline-flex rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+              className="mt-4 inline-flex rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
             >
               Back to tickets
-            </Link>
+            </LoadingLink>
           </div>
         </section>
       </main>
@@ -134,12 +134,12 @@ export default async function AdminTicketDetailPage({
                 </p>
               </div>
 
-              <Link
+              <LoadingLink
                 href="/admin/tickets"
-                className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+                className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
               >
                 Back to tickets
-              </Link>
+              </LoadingLink>
             </div>
           </div>
 

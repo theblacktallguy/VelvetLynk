@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import LoginHeader from "@/components/LoginHeader";
 import RegisterForm from "@/components/auth/RegisterForm";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 export default function RegisterClient() {
   const sp = useSearchParams();
@@ -28,12 +28,12 @@ export default function RegisterClient() {
               Sign in to manage your profile, post ads, and buy VelvetLynk credits.
             </p>
 
-            <Link
+            <LoadingLink
               href="/login"
-              className="mt-5 inline-flex w-full items-center justify-center rounded-lg border px-3 py-2 text-sm font-semibold gold-border hover:bg-amber-600/60"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-lg border px-3 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
             >
               Go to login
-            </Link>
+            </LoadingLink>
           </div>
         </div>
 

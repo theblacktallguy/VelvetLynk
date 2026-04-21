@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { useSession } from "next-auth/react";
 
 export default function TopLinks() {
@@ -16,27 +16,27 @@ export default function TopLinks() {
   return (
     <div className="flex items-center justify-end gap-3 text-sm">
       {!isAuthed ? (
-        <Link
+        <LoadingLink
           href="/login"
-          className="rounded-lg border px-3 py-2 transition-colors gold-border hover:bg-amber-600/60 hover:text-zinc-900"
+          className="rounded-lg border px-3 py-2 transition-all duration-200 gold-border hover:bg-amber-600/60 hover:text-zinc-900 active:scale-95 active:opacity-80"
         >
           Login/Signup
-        </Link>
-      ) : (
-        <Link
+        </LoadingLink>
+        ) : (
+        <LoadingLink
           href={accountHref}
-          className="rounded-lg border px-3 py-2 transition-colors gold-border hover:bg-amber-600/60 hover:text-zinc-900"
+          className="rounded-lg border px-3 py-2 transition-all duration-200 gold-border hover:bg-amber-600/60 hover:text-zinc-900 active:scale-95 active:opacity-80"
         >
           My Account
-        </Link>
-      )}
+        </LoadingLink>
+        )}
 
-      <Link
-        href={postHref}
-        className="rounded-lg border px-3 py-2 font-medium transition-colors gold-border hover:bg-amber-600/60 hover:text-zinc-900"
-      >
-        Post Ad
-      </Link>
+        <LoadingLink
+          href={postHref}
+          className="rounded-lg border px-3 py-2 font-medium transition-all duration-200 gold-border hover:bg-amber-600/60 hover:text-zinc-900 active:scale-95 active:opacity-80"
+        >
+          Post Ad
+        </LoadingLink>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useRouteLoading } from "@/components/navigation/RouteLoadingProvider";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { NG_STATES, citiesForStateSlug, slugify } from "@/lib/locations/ng";
 import AdPreview from "@/components/post/AdPreview";
@@ -91,6 +92,7 @@ export default function PostWizard({
   profilePrefill: Prefill;
 }) {
   const router = useRouter();
+const { startLoading } = useRouteLoading();
   const [step, setStep] = useState(1);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
@@ -278,8 +280,11 @@ export default function PostWizard({
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-end pt-2">
             <button
               type="button"
-              onClick={() => router.push("/account")}
-              className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border hover:bg-[rgba(212,175,55,0.10)]"
+              onClick={() => {
+                startLoading();
+                router.push("/account");
+              }}
+              className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-[rgba(212,175,55,0.10)] active:scale-95 active:opacity-80"
             >
               Go to my account
             </button>
@@ -326,8 +331,11 @@ export default function PostWizard({
               </button>
               <button
                 type="button"
-                onClick={() => router.push("/account/profile/edit")}
-                className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border hover:bg-[rgba(212,175,55,0.10)]"
+                onClick={() => {
+                  startLoading();
+                  router.push("/account/profile/edit");
+                }}
+                className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-[rgba(212,175,55,0.10)] active:scale-95 active:opacity-80"
               >
                 Complete profile
               </button>
@@ -350,8 +358,11 @@ export default function PostWizard({
           </div>
           <button
             type="button"
-            onClick={() => router.push("/account/profile/edit")}
-            className="mt-3 rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-[rgba(212,175,55,0.10)]"
+            onClick={() => {
+              startLoading();
+              router.push("/account/profile/edit");
+            }}
+            className="mt-3 rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-[rgba(212,175,55,0.10)] active:scale-95 active:opacity-80"
           >
             Complete profile
           </button>
@@ -769,8 +780,11 @@ export default function PostWizard({
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
             <button
               type="button"
-              onClick={() => router.push("/account")}
-              className="w-full sm:w-auto rounded-lg border px-4 py-2 text-sm font-semibold text-red-600 border-red-500/40 hover:bg-red-500/10"
+              onClick={() => {
+                startLoading();
+                router.push("/account");
+              }}
+              className="w-full sm:w-auto rounded-lg border px-4 py-2 text-sm font-semibold text-red-600 border-red-500/40 transition-all duration-200 hover:bg-red-500/10 active:scale-95 active:opacity-80"
             >
               Cancel
             </button>

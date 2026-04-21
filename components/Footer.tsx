@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { useEffect, useState } from "react";
 
 export default function Footer() {
@@ -36,21 +36,40 @@ export default function Footer() {
           {/* Links: one line, scrollable on mobile */}
           <div className="flex-1 overflow-x-auto">
             <div className="flex items-center gap-x-4 whitespace-nowrap text-sm \">
-              <Link href="/about" className="hover:underline">
+              <LoadingLink
+                href="/about"
+                className="transition-all duration-200 hover:underline active:opacity-70"
+              >
                 About
-              </Link>
-              <Link href="/safety" className="hover:underline">
+              </LoadingLink>
+
+              <LoadingLink
+                href="/safety"
+                className="transition-all duration-200 hover:underline active:opacity-70"
+              >
                 Safety
-              </Link>
-              <Link href="/privacy" className="hover:underline">
+              </LoadingLink>
+
+              <LoadingLink
+                href="/privacy"
+                className="transition-all duration-200 hover:underline active:opacity-70"
+              >
                 Privacy
-              </Link>
-              <Link href="/terms" className="hover:underline">
+              </LoadingLink>
+
+              <LoadingLink
+                href="/terms"
+                className="transition-all duration-200 hover:underline active:opacity-70"
+              >
                 Terms
-              </Link>
-              <Link href="/contact" className="hover:underline">
+              </LoadingLink>
+
+              <LoadingLink
+                href="/contact"
+                className="transition-all duration-200 hover:underline active:opacity-70"
+              >
                 Contact
-              </Link>
+              </LoadingLink>
             </div>
           </div>
 

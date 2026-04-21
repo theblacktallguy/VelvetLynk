@@ -1,7 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { useRouter } from "next/navigation";
+import { useRouteLoading } from "@/components/navigation/RouteLoadingProvider";
+
 
 export type Ad = {
   id: string;
@@ -72,6 +74,7 @@ function PhotoIcon() {
 
 export default function AdCard({ ad }: { ad: Ad }) {
   const router = useRouter();
+  const { startLoading } = useRouteLoading();
 
   const adUrl = `/ad/${ad.id}`;
   const profileUrl = `/profile/${ad.userSlug}`;
@@ -80,9 +83,15 @@ export default function AdCard({ ad }: { ad: Ad }) {
     <div
       role="link"
       tabIndex={0}
-      onClick={() => router.push(adUrl)}
+      onClick={() => {
+        startLoading();
+        router.push(adUrl);
+      }}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") router.push(adUrl);
+        if (e.key === "Enter" || e.key === " ") {
+          startLoading();
+          router.push(adUrl);
+        }
       }}
       className={[
         "cursor-pointer rounded-xl border p-3 transition outline-none focus:ring-2 focus:ring-[rgba(212,175,55,0.35)]",
@@ -93,10 +102,10 @@ export default function AdCard({ ad }: { ad: Ad }) {
     >
       <div className="flex gap-3">
         {/* Avatar → profile */}
-        <Link
+        <LoadingLink
           href={profileUrl}
           onClick={(e) => e.stopPropagation()}
-          className="block h-11 w-11 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900"
+          className="block h-11 w-11 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 transition-all duration-200 hover:opacity-90 active:scale-95 active:opacity-80 dark:border-zinc-800 dark:bg-zinc-900"
           aria-label={`Open profile: ${ad.username}`}
         >
           <img
@@ -104,20 +113,20 @@ export default function AdCard({ ad }: { ad: Ad }) {
             alt={ad.username}
             className="h-full w-full object-cover"
           />
-        </Link>
+        </LoadingLink>
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             {/* Username → profile */}
-            <Link
+            <LoadingLink
               href={`/profile/${ad.userSlug}`}
               onClick={(e) => e.stopPropagation()}
-              className="min-w-0"
+              className="min-w-0 transition-all duration-200 hover:opacity-80 active:opacity-70"
             >
               <div className="truncate text-sm font-semibold">
                 @{ad.username}
               </div>
-            </Link>
+            </LoadingLink>
 
             {ad.featured && (
               <span className="ml-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold gold-border gold-text">
@@ -142,9 +151,13 @@ export default function AdCard({ ad }: { ad: Ad }) {
 
             {/* Photo icon → ad details */}
             {ad.hasImage ? (
-              <Link href={adUrl} onClick={(e) => e.stopPropagation()}>
+              <LoadingLink
+                href={adUrl}
+                onClick={(e) => e.stopPropagation()}
+                className="transition-all duration-200 hover:opacity-80 active:scale-95 active:opacity-70"
+              >
                 <PhotoIcon />
-              </Link>
+              </LoadingLink>
             ) : null}
           </div>
         </div>

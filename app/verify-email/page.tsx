@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { prisma } from "@/lib/prisma";
 import { hashEmailVerificationToken } from "@/lib/email-verification";
 
@@ -89,19 +89,19 @@ export default async function VerifyEmailPage({
         </div>
 
         <div className="mt-6 flex flex-col gap-3">
-          <Link
+          <LoadingLink
             href="/account/verification"
-            className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition hover:opacity-90 dark:bg-zinc-100 dark:text-zinc-900"
+            className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition-all duration-200 hover:opacity-90 active:scale-95 active:opacity-80 dark:bg-zinc-100 dark:text-zinc-900"
           >
             Go to verification
-          </Link>
+          </LoadingLink>
 
-          <Link
+          <LoadingLink
             href="/account"
-            className="inline-flex w-full items-center justify-center rounded-xl border border-zinc-300 px-4 py-3 text-sm font-medium transition dark:border-zinc-700"
+            className="inline-flex w-full items-center justify-center rounded-xl border border-zinc-300 px-4 py-3 text-sm font-medium transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:border-zinc-700 dark:hover:bg-zinc-800/60"
           >
             Back to account
-          </Link>
+          </LoadingLink>
         </div>
       </div>
     </main>

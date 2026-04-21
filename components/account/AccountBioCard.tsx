@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 export default function AccountBioCard({ bio }: { bio: string }) {
   const trimmed = (bio || "").trim();
@@ -12,14 +12,14 @@ export default function AccountBioCard({ bio }: { bio: string }) {
           About me
         </div>
 
-        <Link
+        <LoadingLink
           href="/account/profile/edit#bio"
-          className="inline-flex items-center justify-center rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-colors gold-border hover:bg-amber-600/60"
+          className="inline-flex items-center justify-center rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-all duration-200 gold-border hover:bg-amber-600/60 active:scale-95 active:opacity-80"
           aria-label="Edit bio"
           title="Edit bio"
         >
           +
-        </Link>
+        </LoadingLink>
       </div>
 
       <p

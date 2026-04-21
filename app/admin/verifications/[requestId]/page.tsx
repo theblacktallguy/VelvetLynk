@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -109,12 +109,12 @@ export default async function AdminVerificationDetailPage({
             <div className="mt-2 text-sm">
               This verification request does not exist.
             </div>
-            <Link
+            <LoadingLink
               href="/admin/verifications"
-              className="mt-4 inline-flex rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+              className="mt-4 inline-flex rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
             >
               Back to queue
-            </Link>
+            </LoadingLink>
           </div>
         </section>
       </main>
@@ -142,12 +142,12 @@ export default async function AdminVerificationDetailPage({
                 </p>
               </div>
 
-              <Link
+              <LoadingLink
                 href="/admin/verifications"
-                className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+                className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
               >
                 Back to queue
-              </Link>
+              </LoadingLink>
             </div>
           </div>
 
@@ -202,12 +202,12 @@ export default async function AdminVerificationDetailPage({
                 ) : null}
 
                 <div className="pt-1">
-                  <Link
+                  <LoadingLink
                     href={`/profile/${request.user.userSlug}`}
-                    className="text-sm font-semibold underline"
+                    className="text-sm font-semibold underline transition-all duration-200 hover:opacity-80 active:opacity-70"
                   >
                     Open public profile
-                  </Link>
+                  </LoadingLink>
                 </div>
               </div>
 

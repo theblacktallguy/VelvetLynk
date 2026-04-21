@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useRouteLoading } from "@/components/navigation/RouteLoadingProvider";
 import { useSession, signOut } from "next-auth/react";
 
 type CityHeaderProps = {
@@ -12,6 +13,7 @@ type CityHeaderProps = {
 
 export default function CityHeader({ fallbackHref }: CityHeaderProps) {
   const router = useRouter();
+  const { startLoading } = useRouteLoading();
   const [open, setOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
@@ -37,6 +39,7 @@ export default function CityHeader({ fallbackHref }: CityHeaderProps) {
 
   const goBack = () => {
     if (typeof window === "undefined") {
+      startLoading();
       router.push(fallbackHref || "/ng");
       return;
     }
@@ -44,8 +47,10 @@ export default function CityHeader({ fallbackHref }: CityHeaderProps) {
     // If this page did not specify a fallback, behave like a normal back button.
     if (!fallbackHref) {
       if (window.history.length > 1) {
+        startLoading();
         router.back();
       } else {
+        startLoading();
         router.push("/ng");
       }
       return;
@@ -54,6 +59,7 @@ export default function CityHeader({ fallbackHref }: CityHeaderProps) {
     const referrer = document.referrer;
 
     if (!referrer) {
+      startLoading();
       router.push(fallbackHref);
       return;
     }
@@ -72,10 +78,12 @@ export default function CityHeader({ fallbackHref }: CityHeaderProps) {
         return;
       }
 
+      startLoading();
       router.push(fallbackHref);
-    } catch {
-      router.push(fallbackHref);
-    }
+      } catch {
+        startLoading();
+        router.push(fallbackHref);
+      }
   };
 
   return (
@@ -89,18 +97,30 @@ export default function CityHeader({ fallbackHref }: CityHeaderProps) {
         ←
       </button>
 
-      <Link href="/ng" className="flex items-center gap-3">
-        <Image src={logoSrc} alt="VelvetLynk" width={44} height={44} priority className="w-11 h-11" />
+      <LoadingLink
+        href="/ng"
+        className="flex items-center gap-3 transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
+      >
+        <Image
+          src={logoSrc}
+          alt="VelvetLynk"
+          width={44}
+          height={44}
+          priority
+          className="w-11 h-11"
+        />
+
         <div className="leading-none text-center">
           <div className="text-2xl font-semibold tracking-tight">
             <span className="gold-text">Velvet</span>
             <span className="text-red-600">Lynk</span>
           </div>
+
           <div className="text-[10px] tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
             NIGERIA
           </div>
         </div>
-      </Link>
+      </LoadingLink>
 
       <button
         type="button"
@@ -114,27 +134,29 @@ export default function CityHeader({ fallbackHref }: CityHeaderProps) {
       {open && (
         <div className="absolute right-0 top-12 z-[100] w-56 card overflow-hidden shadow-lg">
           <nav className="flex flex-col text-sm">
-            <Link
-              className="px-3 py-2 hover:bg-[rgba(212,175,55,0.12)]"
+            <LoadingLink
               href="/ng"
               onClick={() => setOpen(false)}
+              className="px-3 py-2 transition-all duration-200 hover:bg-[rgba(212,175,55,0.12)] active:scale-[0.98] active:opacity-80"
             >
               Home
-            </Link>
-            <Link
-              className="px-3 py-2 hover:bg-[rgba(212,175,55,0.12)]"
+            </LoadingLink>
+
+            <LoadingLink
               href="/post"
               onClick={() => setOpen(false)}
+              className="px-3 py-2 transition-all duration-200 hover:bg-[rgba(212,175,55,0.12)] active:scale-[0.98] active:opacity-80"
             >
               Post Ad
-            </Link>
-            <Link
-              className="px-3 py-2 hover:bg-[rgba(212,175,55,0.12)]"
+            </LoadingLink>
+
+            <LoadingLink
               href="/account"
               onClick={() => setOpen(false)}
+              className="px-3 py-2 transition-all duration-200 hover:bg-[rgba(212,175,55,0.12)] active:scale-[0.98] active:opacity-80"
             >
               My Account
-            </Link>
+            </LoadingLink>
 
             {status === "loading" ? (
               <div className="px-3 py-2 text-zinc-500 dark:text-zinc-400">
@@ -152,13 +174,13 @@ export default function CityHeader({ fallbackHref }: CityHeaderProps) {
                 Logout
               </button>
             ) : (
-              <Link
-                className="px-3 py-2 hover:bg-[rgba(212,175,55,0.12)]"
+              <LoadingLink
                 href="/login"
                 onClick={() => setOpen(false)}
+                className="px-3 py-2 transition-all duration-200 hover:bg-[rgba(212,175,55,0.12)] active:scale-[0.98] active:opacity-80"
               >
                 Login
-              </Link>
+              </LoadingLink>
             )}
           </nav>
         </div>

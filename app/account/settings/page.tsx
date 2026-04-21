@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -97,12 +97,12 @@ searchParams?: Promise<SearchParams> | SearchParams;
                 ) : null}
 
               <div className="flex flex-wrap gap-3">
-                <Link
+                <LoadingLink
                   href="/account"
-                  className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+                  className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
                 >
                   Back to Account
-                </Link>
+                </LoadingLink>
               </div>
             </div>
           </div>
@@ -171,12 +171,12 @@ searchParams?: Promise<SearchParams> | SearchParams;
                 </div>
 
                 <div className="mt-4">
-                  <Link
+                  <LoadingLink
                     href="/account/profile/edit"
-                    className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border hover:bg-amber-600/60"
+                    className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
                   >
                     Edit Profile
-                  </Link>
+                  </LoadingLink>
                 </div>
               </div>
 
@@ -193,12 +193,12 @@ searchParams?: Promise<SearchParams> | SearchParams;
                         </div>
                       </div>
 
-                      <Link
+                      <LoadingLink
                         href="/forgot-password"
-                        className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+                        className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
                       >
                         Change Password
-                      </Link>
+                      </LoadingLink>
                     </div>
                   </div>
 
@@ -211,12 +211,12 @@ searchParams?: Promise<SearchParams> | SearchParams;
                         </div>
                       </div>
 
-                      <Link
+                      <LoadingLink
                         href="/verify-email"
-                        className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+                        className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
                       >
                         {user.emailVerified ? "Verified" : "Verify Email"}
-                      </Link>
+                      </LoadingLink>
                     </div>
                   </div>
 
@@ -229,12 +229,12 @@ searchParams?: Promise<SearchParams> | SearchParams;
                         </div>
                       </div>
 
-                      <Link
+                      <LoadingLink
                         href="/account/verification"
-                        className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+                        className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
                       >
                         {user.verified ? "Verified" : "Manage Verification"}
-                      </Link>
+                      </LoadingLink>
                     </div>
                   </div>
 
@@ -342,26 +342,26 @@ searchParams?: Promise<SearchParams> | SearchParams;
                 <div className="text-s font-bold">Help</div>
 
                 <div className="mt-4 space-y-3">
-                  <Link
+                  <LoadingLink
                     href="/contact"
-                    className="block rounded-xl border border-zinc-200 p-4 text-sm font-semibold hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/60"
+                    className="block rounded-xl border border-zinc-200 p-4 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-[0.98] active:opacity-80 dark:border-zinc-800 dark:hover:bg-zinc-800/60"
                   >
                     Contact Support
-                  </Link>
+                  </LoadingLink>
 
-                  <Link
+                  <LoadingLink
                     href="/privacy"
-                    className="block rounded-xl border border-zinc-200 p-4 text-sm font-semibold hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/60"
+                    className="block rounded-xl border border-zinc-200 p-4 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-[0.98] active:opacity-80 dark:border-zinc-800 dark:hover:bg-zinc-800/60"
                   >
                     Privacy Policy
-                  </Link>
+                  </LoadingLink>
 
-                  <Link
+                  <LoadingLink
                     href="/terms"
-                    className="block rounded-xl border border-zinc-200 p-4 text-sm font-semibold hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/60"
+                    className="block rounded-xl border border-zinc-200 p-4 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-[0.98] active:opacity-80 dark:border-zinc-800 dark:hover:bg-zinc-800/60"
                   >
                     Terms of Service
-                  </Link>
+                  </LoadingLink>
                 </div>
               </div>
             </div>

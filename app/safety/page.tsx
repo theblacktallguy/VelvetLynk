@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 export default function SafetyPage() {
   return (
@@ -98,18 +98,19 @@ export default function SafetyPage() {
               <li>Include any relevant details (dates, usernames, ad IDs).</li>
             </ol>
             <div className="flex flex-wrap gap-2">
-              <Link
+              <LoadingLink
                 href="/contact"
-                className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-amber-600/60"
+                className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
               >
                 Contact Support
-              </Link>
-              <Link
+              </LoadingLink>
+
+              <LoadingLink
                 href="/terms"
-                className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-amber-600/60"
+                className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
               >
                 Review Terms
-              </Link>
+              </LoadingLink>
             </div>
           </section>
 

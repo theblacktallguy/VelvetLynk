@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import ContactSection from "@/components/ads/ContactSection";
 import AdImageCarousel from "@/components/ads/AdImageCarousel";
 import type { Metadata } from "next";
@@ -218,16 +218,19 @@ export default async function AdPage({
         </div>
 
         <div className="mt-3 text-sm ">
-          <Link href="/ng" className="hover:underline">
+          <LoadingLink
+            href="/ng"
+            className="transition-all duration-200 hover:underline active:opacity-70"
+          >
             Nigeria
-          </Link>{" "}
+          </LoadingLink>{" "}
           &gt;{" "}
-          <Link
+          <LoadingLink
             href={`/ng/${ad.stateSlug}/${ad.citySlug}`}
-            className="hover:underline"
+            className="transition-all duration-200 hover:underline active:opacity-70"
           >
             {stateLabel} &gt; {cityLabel}
-          </Link>{" "}
+          </LoadingLink>{" "}
           &gt;{" "}
           <span className="font-semibold gold-text">{categoryLabel}</span>
         </div>
@@ -238,12 +241,12 @@ export default async function AdPage({
               {postedAt}
             </div>
 
-            <Link
+            <LoadingLink
               href={profileUrl}
-              className="shrink-0 rounded-md border px-2 py-1 text-xs gold-border hover:bg-[rgba(212,175,55,0.10)]"
+              className="shrink-0 rounded-md border px-2 py-1 text-xs gold-border transition-all duration-200 hover:bg-[rgba(212,175,55,0.10)] active:scale-95 active:opacity-80"
             >
               View Profile
-            </Link>
+            </LoadingLink>
           </div>
 
           <h1 className="mt-2 break-words text-lg font-semibold ">
@@ -298,12 +301,12 @@ export default async function AdPage({
             <span>Post ID: {ad.id}</span>
             <span>Posted: {postedAt}</span>
 
-            <Link
+            <LoadingLink
               href={`/report?adId=${encodeURIComponent(ad.id)}`}
-              className="underline hover:text-zinc-700 dark:hover:text-zinc-200"
+              className="underline transition-all duration-200 hover:text-zinc-700 active:opacity-70 dark:hover:text-zinc-200"
             >
               Report Ad
-            </Link>
+            </LoadingLink>
           </div>
         </div>
       </section>

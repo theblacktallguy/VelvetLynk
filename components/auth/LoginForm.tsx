@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 type LoginFormProps = {
   callbackUrl?: string;
@@ -84,12 +84,12 @@ export default function LoginForm({ callbackUrl = "/account" }: LoginFormProps) 
           </div>
 
           <div className="flex items-center justify-between text-sm">
-            <Link
+            <LoadingLink
               href="/forgot-password"
-              className="font-medium text-[rgb(212,175,55)] hover:underline"
+              className="font-medium text-[rgb(212,175,55)] transition-all duration-200 hover:underline active:opacity-70"
             >
               Forgot password?
-            </Link>
+            </LoadingLink>
           </div>
 
           <button

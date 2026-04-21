@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import CityHeader from "@/components/CityHeader";
 import AgeGate from "@/components/AgeGate";
 import CategorySeo from "@/components/CategorySeo";
@@ -90,9 +90,12 @@ export default async function CityPage({
       <section className="mx-auto w-full max-w-5xl px-4 pb-10">
         {/* Clickable breadcrumbs */}
         <div className="mt-6 text-sm text-zinc-700 dark:text-zinc-400">
-          <Link className="hover:underline" href="/ng">
+          <LoadingLink
+            href="/ng"
+            className="transition-all duration-200 hover:underline active:opacity-70"
+          >
             Nigeria
-          </Link>{" "}
+          </LoadingLink>{" "}
           <span className="mx-1">{">"}</span>
           <span className="font-semibold gold-text">{stateName}</span>{" "}
           <span className="mx-1">{">"}</span>
@@ -115,13 +118,13 @@ export default async function CityPage({
             {CATEGORIES.map((name) => {
               const categorySlug = slugify(name);
               return (
-                <Link
+                <LoadingLink
                   key={categorySlug}
                   href={`/ng/${stateSlug}/${citySlug}/${categorySlug}`}
-                  className="rounded-lg border px-3 py-3 text-sm transition gold-border hover:bg-[rgba(212,175,55,0.10)]"
+                  className="rounded-lg border px-3 py-3 text-sm transition-all duration-200 gold-border hover:bg-[rgba(212,175,55,0.10)] active:scale-[0.98] active:opacity-80"
                 >
                   {name}
-                </Link>
+                </LoadingLink>
               );
             })}
           </div>

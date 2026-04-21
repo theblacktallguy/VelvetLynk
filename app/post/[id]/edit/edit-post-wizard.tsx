@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useRouteLoading } from "@/components/navigation/RouteLoadingProvider";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { NG_STATES, citiesForStateSlug, slugify } from "@/lib/locations/ng";
 import AdPreview from "@/components/post/AdPreview";
@@ -97,6 +98,7 @@ export default function EditPostWizard({
   walletCredits: number;
 }) {
   const router = useRouter();
+const { startLoading } = useRouteLoading();
 
   const [step, setStep] = useState(1);
   const [busy, setBusy] = useState(false);
@@ -241,16 +243,22 @@ export default function EditPostWizard({
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-end">
             <button
               type="button"
-              onClick={() => router.push("/account/ads")}
-              className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border hover:bg-[rgba(212,175,55,0.10)]"
+              onClick={() => {
+                startLoading();
+                router.push("/account/ads");
+              }}
+              className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-[rgba(212,175,55,0.10)] active:scale-95 active:opacity-80"
             >
               Back to Manage Ads
             </button>
 
             <button
               type="button"
-              onClick={() => router.push("/account")}
-              className="rounded-lg border px-4 py-2 text-sm font-semibold"
+              onClick={() => {
+                startLoading();
+                router.push("/account");
+              }}
+              className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
             >
               Go to My Account
             </button>
@@ -276,14 +284,18 @@ export default function EditPostWizard({
               <button
                 type="button"
                 onClick={() => setOverlay(null)}
-                className="rounded-lg border px-4 py-2 text-sm font-semibold"
+                className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
               >
                 Close
               </button>
+
               <button
                 type="button"
-                onClick={() => router.push("/account/profile/edit")}
-                className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border hover:bg-[rgba(212,175,55,0.10)]"
+                onClick={() => {
+                  startLoading();
+                  router.push("/account/profile/edit");
+                }}
+                className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-[rgba(212,175,55,0.10)] active:scale-95 active:opacity-80"
               >
                 Complete profile
               </button>
@@ -307,8 +319,11 @@ export default function EditPostWizard({
           </div>
           <button
             type="button"
-            onClick={() => router.push("/account/profile/edit")}
-            className="mt-3 rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-[rgba(212,175,55,0.10)]"
+            onClick={() => {
+              startLoading();
+              router.push("/account/profile/edit");
+            }}
+            className="mt-3 rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-[rgba(212,175,55,0.10)] active:scale-95 active:opacity-80"
           >
             Complete profile
           </button>
@@ -687,8 +702,11 @@ export default function EditPostWizard({
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
             <button
               type="button"
-              onClick={() => router.push("/account/ads")}
-              className="w-full rounded-lg border border-red-500/40 px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-700/80 hover:text-zinc-100 sm:w-auto"
+              onClick={() => {
+                startLoading();
+                router.push("/account/ads");
+              }}
+              className="w-full rounded-lg border border-red-500/40 px-4 py-2 text-sm font-semibold text-red-600 transition-all duration-200 hover:bg-red-700/80 hover:text-zinc-100 active:scale-95 active:opacity-80 sm:w-auto"
             >
               Cancel
             </button>

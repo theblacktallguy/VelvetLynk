@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { useSearchParams } from "next/navigation";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -84,12 +84,12 @@ export default function ResetPasswordForm() {
           <div className="rounded-xl border border-red-200 bg-red-500 p-3 text-sm text-white dark:text-zinc-900 dark:border-red-900/60 dark:bg-red-500">
             This reset link is invalid or incomplete.
           </div>
-          <Link
+          <LoadingLink
             href="/forgot-password"
-            className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition hover:opacity-90 dark:bg-zinc-100 dark:text-zinc-900"
+            className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition-all duration-200 hover:opacity-90 active:scale-95 active:opacity-80 dark:bg-zinc-100 dark:text-zinc-900"
           >
             Request a new reset link
-          </Link>
+          </LoadingLink>
         </div>
       ) : status === "success" ? (
         <div className="space-y-4">
@@ -101,12 +101,12 @@ export default function ResetPasswordForm() {
             Your previous sessions have been invalidated. Please sign in again with your new password.
           </p>
 
-          <Link
+          <LoadingLink
             href="/login"
-            className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition hover:opacity-90 dark:bg-zinc-100 dark:text-zinc-900"
+            className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition-all duration-200 hover:opacity-90 active:scale-95 active:opacity-80 dark:bg-zinc-100 dark:text-zinc-900"
           >
             Go to login
-          </Link>
+          </LoadingLink>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -161,9 +161,12 @@ export default function ResetPasswordForm() {
           </button>
 
           <div className="text-center text-sm">
-            <Link href="/login" className="underline underline-offset-4">
+            <LoadingLink
+              href="/login"
+              className="underline underline-offset-4 transition-all duration-200 hover:opacity-80 active:opacity-70"
+            >
               Back to login
-            </Link>
+            </LoadingLink>
           </div>
         </form>
       )}

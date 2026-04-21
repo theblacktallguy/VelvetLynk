@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 export default function SettingsSecurityCard() {
   return (
@@ -13,12 +13,12 @@ export default function SettingsSecurityCard() {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <Link
+        <LoadingLink
           href="/account/settings"
-          className="rounded-lg border px-3 py-2 text-sm font-semibold gold-border hover:bg-amber-600/60"
+          className="rounded-lg border px-3 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
         >
           Open settings
-        </Link>
+        </LoadingLink>
       </div>
     </div>
   );

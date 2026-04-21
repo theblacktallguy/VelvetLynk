@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 export default function VerificationCard({ verified }: { verified: boolean }) {
   return (
@@ -43,12 +43,12 @@ export default function VerificationCard({ verified }: { verified: boolean }) {
       )}
 
       <div className="mt-4">
-        <Link
+        <LoadingLink
           href="/account/verification"
-          className="inline-flex rounded-lg border px-3 py-2 text-sm gold-border hover:bg-amber-600/60"
+          className="inline-flex rounded-lg border px-3 py-2 text-sm gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
         >
           {verified ? "View verification" : "Get verified"}
-        </Link>
+        </LoadingLink>
       </div>
     </div>
   );

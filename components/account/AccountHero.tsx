@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { useMemo, useState } from "react";
 import Lightbox from "@/components/common/Lightbox";
 
@@ -106,12 +106,12 @@ export default function AccountHero({
             </div>
           </div>
 
-          <Link
+          <LoadingLink
             href="/account/profile/edit"
-            className="shrink-0 rounded-lg border px-3 py-1 text-sm font-semibold transition-colors gold-border hover:bg-[rgba(212,175,55,0.08)] hover:bg-amber-600/60"
+            className="shrink-0 rounded-lg border px-3 py-1 text-sm font-semibold transition-all duration-200 gold-border hover:bg-amber-600/60 active:scale-95 active:opacity-80"
           >
             Edit Profile
-          </Link>
+          </LoadingLink>
         </div>
 
         {/* Center avatar + plus */}
@@ -133,10 +133,10 @@ export default function AccountHero({
             />
 
             {/* Plus badge (still links to edit) */}
-            <Link
+            <LoadingLink
               href="/account/profile/edit#photos"
               onClick={(e) => e.stopPropagation()}
-              className="absolute -right-1 -bottom-1 inline-flex h-8 w-8 items-center justify-center rounded-full border bg-white text-zinc-900 shadow-sm transition dark:bg-zinc-950 dark:text-zinc-100 gold-border group-hover:bg-[rgba(212,175,55,0.10)]"
+              className="absolute -right-1 -bottom-1 inline-flex h-8 w-8 items-center justify-center rounded-full border bg-white text-zinc-900 shadow-sm transition-all duration-200 gold-border active:scale-95 active:opacity-80 dark:bg-zinc-950 dark:text-zinc-100 group-hover:bg-[rgba(212,175,55,0.10)]"
               aria-label="Edit profile photos"
               title="Edit profile photos"
             >
@@ -148,7 +148,7 @@ export default function AccountHero({
                   strokeLinecap="round"
                 />
               </svg>
-            </Link>
+            </LoadingLink>
           </button>
 
           {/* Thumbnails row */}

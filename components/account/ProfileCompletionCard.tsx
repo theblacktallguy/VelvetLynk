@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 type Item = { label: string; done: boolean };
 
@@ -33,12 +33,12 @@ export default function ProfileCompletionCard({
           <div className="text-sm font-semibold text-green-800">{safe}%</div>
 
           {ctaHref && ctaLabel ? (
-            <Link
+            <LoadingLink
               href={ctaHref}
-              className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-amber-600/60"
+              className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
             >
               {ctaLabel}
-            </Link>
+            </LoadingLink>
           ) : null}
         </div>
       </div>

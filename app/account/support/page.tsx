@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -63,19 +63,19 @@ export default async function AccountSupportPage() {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <Link
+                <LoadingLink
                   href="/contact"
-                  className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border hover:bg-amber-600/60"
+                  className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
                 >
                   Open Support Chat
-                </Link>
+                </LoadingLink>
 
-                <Link
+                <LoadingLink
                   href="/account"
-                  className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+                  className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
                 >
                   Back to Account
-                </Link>
+                </LoadingLink>
               </div>
             </div>
           </div>

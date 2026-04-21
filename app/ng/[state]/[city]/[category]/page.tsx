@@ -1,7 +1,7 @@
 import CityHeader from "@/components/CityHeader";
 import AdCard, { type Ad as AdCardAd } from "@/components/ads/AdCard";
 import NoAds from "@/components/ads/NoAds";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";;
 import AgeGate from "@/components/AgeGate";
 import { prisma } from "@/lib/prisma";
 import { AdStatus } from "@prisma/client";
@@ -143,16 +143,19 @@ export default async function CategoryPage({
           </h1>
 
           <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">
-            <Link className="text-inherit hover:underline" href="/ng">
+            <LoadingLink
+              href="/ng"
+              className="text-inherit transition-all duration-200 hover:underline active:opacity-70"
+            >
               Nigeria
-            </Link>{" "}
+            </LoadingLink>{" "}
             <span className="mx-1">{">"}</span>
-            <Link
-              className="text-inherit hover:underline"
+            <LoadingLink
               href={`/ng/${stateSlug}/${citySlug}`}
+              className="text-inherit transition-all duration-200 hover:underline active:opacity-70"
             >
               {stateName} {" > "} {cityName}
-            </Link>{" "}
+            </LoadingLink>{" "}
             <span className="mx-1">{">"}</span>
             <span className="font-semibold gold-text">{categoryLabel}</span>
           </p>

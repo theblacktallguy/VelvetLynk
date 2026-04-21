@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { useState } from "react";
 
 type AdSummary = {
@@ -57,18 +57,19 @@ export default function AdsManager({
         </div>
 
         <div className="flex shrink-0 flex-wrap gap-2">
-          <Link
+          <LoadingLink
             href="/post"
-            className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-amber-600/60"
+            className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
           >
             Post Ad
-          </Link>
-          <Link
+          </LoadingLink>
+
+          <LoadingLink
             href="/account/ads"
-            className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-amber-600/60"
+            className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
           >
             Manage
-          </Link>
+          </LoadingLink>
         </div>
       </div>
 
@@ -133,12 +134,12 @@ export default function AdsManager({
                       {busyAdId === a.id ? "Renewing..." : "Renew Ad"}
                     </button>
                   ) : (
-                    <Link
+                    <LoadingLink
                       href={`/ad/${encodeURIComponent(a.id)}`}
-                      className="shrink-0 text-xs underline"
+                      className="shrink-0 text-xs underline transition-all duration-200 hover:opacity-80 active:opacity-70"
                     >
                       View
-                    </Link>
+                    </LoadingLink>
                   )}
                 </div>
               </div>

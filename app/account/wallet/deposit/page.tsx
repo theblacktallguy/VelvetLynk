@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import AutoScrollToSelectedPackage from "@/components/AutoScrollToSelectedPackage";
@@ -90,12 +90,12 @@ export default async function BuyCreditsPage({
               </div>
 
               <div className="flex flex-wrap gap-2">
-                <Link
+                <LoadingLink
                   href="/account/wallet"
-                  className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border hover:bg-amber-600/60"
+                  className="rounded-lg border px-4 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
                 >
                   Back to Wallet
-                </Link>
+                </LoadingLink>
               </div>
             </div>
           </div>
@@ -153,12 +153,12 @@ export default async function BuyCreditsPage({
                     </div>
 
                     <div className="mt-4">
-                      <Link
+                      <LoadingLink
                         href={`/account/wallet/deposit?credits=${pkg.credits}`}
-                        className="inline-flex w-full items-center justify-center rounded-lg border px-4 py-2 text-sm font-semibold gold-border hover:bg-amber-600/60"
+                        className="inline-flex w-full items-center justify-center rounded-lg border px-4 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
                       >
                         {isSelected ? "Selected" : "Choose Package"}
-                      </Link>
+                      </LoadingLink>
                     </div>
                   </div>
                 );

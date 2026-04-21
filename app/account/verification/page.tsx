@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -143,12 +143,12 @@ export default async function VerificationPage({
               </div>
 
               <div className="mt-5 flex items-center justify-between gap-3">
-                <Link
+                <LoadingLink
                   href="/account"
-                  className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
+                  className="rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:hover:bg-zinc-800/60"
                 >
                   Back to account
-                </Link>
+                </LoadingLink>
 
                 {!emailVerified ? <ResendVerificationButton /> : null}
               </div>

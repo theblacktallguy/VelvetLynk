@@ -4,7 +4,7 @@
 import { useSearchParams } from "next/navigation";
 import LoginHeader from "@/components/LoginHeader";
 import LoginForm from "@/components/auth/LoginForm";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 export default function LoginClient() {
   const sp = useSearchParams();
@@ -41,13 +41,19 @@ export default function LoginClient() {
 
             <div className="mt-4 text-xs ">
               By continuing, you agree to our{" "}
-              <Link href="/terms" className="hover:underline">
+              <LoadingLink
+                href="/terms"
+                className="transition-all duration-200 hover:underline active:opacity-70"
+              >
                 Terms
-              </Link>{" "}
+              </LoadingLink>{" "}
               and{" "}
-              <Link href="/privacy" className="hover:underline">
+              <LoadingLink
+                href="/privacy"
+                className="transition-all duration-200 hover:underline active:opacity-70"
+              >
                 Privacy Policy
-              </Link>
+              </LoadingLink>
               .
             </div>
           </div>
@@ -60,12 +66,12 @@ export default function LoginClient() {
               your VelvetLynk credits.
             </p>
 
-            <Link
+            <LoadingLink
               href="/register"
-              className="mt-5 inline-flex w-full items-center justify-center rounded-lg border px-3 py-2 text-sm font-semibold gold-border hover:bg-amber-600/60"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-lg border px-3 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
             >
               Create account
-            </Link>
+            </LoadingLink>
           </div>
         </div>
       </section>

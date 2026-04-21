@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { saveProfile } from "../actions";
 import PhotoManager from "./PhotoManager";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 type Initial = {
   userSlug: string;
@@ -117,12 +117,12 @@ export default function EditProfileForm({ initial }: { initial: Initial }) {
               Add how people can reach you. Verification will be handled on the verification page.
             </div>
           </div>
-          <Link
+          <LoadingLink
             href="/account/verification"
-            className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-amber-600/60"
+            className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
           >
             Verification
-          </Link>
+          </LoadingLink>
         </div>
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
@@ -132,12 +132,12 @@ export default function EditProfileForm({ initial }: { initial: Initial }) {
               <label className="block text-sm font-semibold ">Phone</label>
               <div className="flex items-center gap-2">
                 <Badge ok={false} label="Unverified" />
-                <Link
+                <LoadingLink
                   href="/account/verification?type=phone"
-                  className="text-[11px] font-semibold underline hover:text-zinc-900 dark:hover:text-zinc-300"
+                  className="text-[11px] font-semibold underline transition-all duration-200 hover:text-zinc-900 active:opacity-70 dark:hover:text-zinc-300"
                 >
                   Verify
-                </Link>
+                </LoadingLink>
               </div>
             </div>
             <input
@@ -154,12 +154,12 @@ export default function EditProfileForm({ initial }: { initial: Initial }) {
               <label className="block text-sm font-semibold ">Email</label>
               <div className="flex items-center gap-2">
                 <Badge ok={initial.accountEmailVerified} label={initial.accountEmailVerified ? "Verified" : "Unverified"} />
-                <Link
+                <LoadingLink
                   href="/account/verification?type=email"
-                  className="text-[11px] font-semibold underline hover:text-zinc-900 dark:hover:text-zinc-300"
+                  className="text-[11px] font-semibold underline transition-all duration-200 hover:text-zinc-900 active:opacity-70 dark:hover:text-zinc-300"
                 >
                   Verify
-                </Link>
+                </LoadingLink>
               </div>
             </div>
             <input

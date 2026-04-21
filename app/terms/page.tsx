@@ -1,5 +1,5 @@
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 export default function TermsPage() {
   return (
@@ -50,18 +50,19 @@ export default function TermsPage() {
               If you see suspicious behavior, report it.
             </p>
             <div className="flex flex-wrap gap-2">
-              <Link
+              <LoadingLink
                 href="/safety"
-                className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-amber-600/60"
+                className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
               >
                 Safety Center
-              </Link>
-              <Link
+              </LoadingLink>
+
+              <LoadingLink
                 href="/contact"
-                className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border hover:bg-amber-600/60"
+                className="rounded-lg border px-3 py-2 text-xs font-semibold gold-border transition-all duration-200 hover:bg-amber-600/60 active:scale-95 active:opacity-80"
               >
                 Contact Support
-              </Link>
+              </LoadingLink>
             </div>
           </section>
 
@@ -87,12 +88,12 @@ export default function TermsPage() {
             <p className="text-sm ">
               Our data practices are described in the Privacy Policy.
             </p>
-            <Link
+            <LoadingLink
               href="/privacy"
-              className="text-sm underline "
+              className="text-sm underline transition-all duration-200 hover:opacity-80 active:opacity-70"
             >
               Read Privacy Policy
-            </Link>
+            </LoadingLink>
           </section>
 
           <p className="text-xs ">

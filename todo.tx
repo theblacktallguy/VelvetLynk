@@ -4,3 +4,13 @@ git push
 
 
 rm -rf .next
+
+
+import LoadingLink from "@/components/navigation/LoadingLink";
+
+import { useRouter } from "next/navigation";
+import { useRouteLoading } from "@/components/navigation/RouteLoadingProvider";
+
+
+const router = useRouter();
+const { startLoading } = useRouteLoading();

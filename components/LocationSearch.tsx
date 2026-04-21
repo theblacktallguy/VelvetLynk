@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useRouteLoading } from "@/components/navigation/RouteLoadingProvider";
 import locations from "@/data/nigeria-locations.json";
 
 type LocationsMap = Record<string, string[]>;
@@ -20,6 +21,7 @@ function slugify(input: string) {
 
 export default function LocationSearch() {
   const router = useRouter();
+  const { startLoading } = useRouteLoading();
   const [q, setQ] = useState("");
 
   const { stateMatches, cityMatches } = useMemo(() => {
@@ -58,13 +60,18 @@ export default function LocationSearch() {
   // ✅ State click from search: go to homepage and open that state's dropdown
   function goState(state: string) {
     const stateSlug = slugify(state);
+
+    startLoading();
     router.push(`/ng?state=${stateSlug}`);
+
     setQ("");
   }
 
   // ✅ City click from search: go to city directory page
   function goCity(state: string, city: string) {
+    startLoading();
     router.push(`/ng/${slugify(state)}/${slugify(city)}`);
+
     setQ("");
   }
 

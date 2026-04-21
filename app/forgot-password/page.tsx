@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -72,12 +72,12 @@ export default function ForgotPasswordPage() {
               {message}
             </div>
 
-            <Link
+            <LoadingLink
               href="/login"
-              className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition hover:opacity-90 dark:bg-zinc-100 dark:text-zinc-900"
+              className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition-all duration-200 hover:opacity-90 active:scale-95 active:opacity-80 dark:bg-zinc-100 dark:text-zinc-900"
             >
               Back to login
-            </Link>
+            </LoadingLink>
 
             <button
               type="button"
@@ -127,9 +127,12 @@ export default function ForgotPasswordPage() {
             </button>
 
             <div className="text-center text-sm ">
-              <Link href="/login" className="underline underline-offset-4">
+              <LoadingLink
+                href="/login"
+                className="underline underline-offset-4 transition-all duration-200 hover:opacity-80 active:opacity-70"
+              >
                 Back to login
-              </Link>
+              </LoadingLink>
             </div>
           </form>
         )}

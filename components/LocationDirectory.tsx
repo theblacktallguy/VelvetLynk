@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { useEffect, useMemo, useRef } from "react";
 import locations from "@/data/nigeria-locations.json";
 
@@ -77,13 +77,13 @@ export default function LocationDirectory({
                 <div className="px-4 pb-4">
                   <div className="mt-2 flex flex-wrap gap-2">
                     {cities.map((city) => (
-                      <Link
+                      <LoadingLink
                         key={`${state}-${city}`}
                         href={`/ng/${slugify(state)}/${slugify(city)}`}
-                        className="rounded-lg border px-3 py-1.5 text-sm hover:bg-[rgba(212,175,55,0.12)] dark:hover:bg-[rgba(212,175,55,0.14)]"
+                        className="rounded-lg border px-3 py-1.5 text-sm transition-all duration-200 hover:bg-[rgba(212,175,55,0.12)] active:scale-[0.98] active:opacity-80 dark:hover:bg-[rgba(212,175,55,0.14)]"
                       >
                         {city}
-                      </Link>
+                      </LoadingLink>
                     ))}
                   </div>
                 </div>

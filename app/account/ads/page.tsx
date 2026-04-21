@@ -2,7 +2,7 @@
 
 import CityHeader from "@/components/CityHeader";
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 
 type AccountAd = {
   id: string;
@@ -211,12 +211,12 @@ export default function AccountAdsPage() {
             </p>
           </div>
 
-          <Link
+          <LoadingLink
             href="/post"
-            className="inline-flex items-center rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition hover:dark:bg-zinc-800 dark:bg-zinc-600 dark:text-zinc-200"
+            className="inline-flex items-center rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-zinc-800 active:scale-95 active:opacity-90 dark:bg-zinc-600 dark:text-zinc-200 dark:hover:bg-zinc-500"
           >
             Post New Ad
-          </Link>
+          </LoadingLink>
         </div>
 
         {loading ? (
@@ -237,12 +237,12 @@ export default function AccountAdsPage() {
             </p>
 
             <div className="mt-4">
-              <Link
+              <LoadingLink
                 href="/post"
-                className="inline-flex items-center rounded-xl bg-zinc-600 px-4 py-2 text-sm font-medium transition hover:opacity-90 dark:text-zinc-200"
+                className="inline-flex items-center rounded-xl bg-zinc-600 px-4 py-2 text-sm font-medium transition-all duration-200 hover:opacity-90 hover:bg-zinc-500 active:scale-95 active:opacity-80 dark:text-zinc-200"
               >
                 Post Your First Ad
-              </Link>
+              </LoadingLink>
             </div>
           </div>
         ) : (
@@ -437,12 +437,12 @@ function AdCard({
 
         <div className="mt-4 flex flex-wrap gap-2">
           {ad.status === "ACTIVE" && editHref ? (
-            <Link
+            <LoadingLink
               href={editHref}
-              className="inline-flex items-center rounded-xl border border-zinc-300 px-3 py-2 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+              className="inline-flex items-center rounded-xl border border-zinc-300 px-3 py-2 text-sm font-medium text-zinc-800 transition-all duration-200 hover:bg-zinc-50 active:scale-95 active:opacity-80 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
             >
               Edit
-            </Link>
+            </LoadingLink>
           ) : null}
 
           {ad.status === "ACTIVE" && !ad.featured && onUpgradeFeatured ? (

@@ -1,6 +1,6 @@
 // app/account/deposit/page.tsx
 import CityHeader from "@/components/CityHeader";
-import Link from "next/link";
+import LoadingLink from "@/components/navigation/LoadingLink";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -28,12 +28,12 @@ export default async function DepositPage() {
           </p>
 
           <div className="mt-4 flex flex-wrap gap-2">
-            <Link
+            <LoadingLink
               href="/account"
-              className="rounded-lg border px-3 py-2 text-sm font-semibold gold-border hover:bg-[rgba(212,175,55,0.10)]"
+              className="rounded-lg border px-3 py-2 text-sm font-semibold gold-border transition-all duration-200 hover:bg-[rgba(212,175,55,0.10)] active:scale-95 active:opacity-80"
             >
               Back to account
-            </Link>
+            </LoadingLink>
           </div>
         </div>
       </section>

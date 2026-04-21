@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useRouteLoading } from "@/components/navigation/RouteLoadingProvider";
+
 
 type Props = {
   // If true, gate is enabled (you can later disable per-route)
@@ -14,6 +16,7 @@ const KEY = "sl_age_ok";
 
 export default function AgeGate({ enabled = true, rejectTo = "/ng" }: Props) {
   const router = useRouter();
+  const { startLoading } = useRouteLoading();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -41,6 +44,8 @@ export default function AgeGate({ enabled = true, rejectTo = "/ng" }: Props) {
       localStorage.removeItem(KEY);
       localStorage.removeItem("sl_age_ok_at");
     } catch {}
+
+    startLoading();
     router.push(rejectTo);
   }
 
