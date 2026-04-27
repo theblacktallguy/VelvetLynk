@@ -119,24 +119,25 @@ export default function AccountHero({
           <button
             type="button"
             onClick={() => openAt(0)}
-            className="group relative h-24 w-24 rounded-full border gold-border bg-zinc-100 dark:bg-zinc-900 overflow-hidden"
+            className="group relative h-24 w-24 rounded-full border gold-border bg-zinc-100 dark:bg-zinc-900"
             aria-label="Open photo preview"
             title="Open photo preview"
           >
-            <Image
-              src={avatarSrc}
-              alt="Profile picture"
-              fill
-              className="object-cover"
-              sizes="96px"
-              priority
-            />
+            <span className="absolute inset-0 overflow-hidden rounded-full">
+              <Image
+                src={avatarSrc}
+                alt="Profile picture"
+                fill
+                className="object-cover"
+                sizes="96px"
+                priority
+              />
+            </span>
 
-            {/* Plus badge (still links to edit) */}
             <LoadingLink
               href="/account/profile/edit#photos"
               onClick={(e) => e.stopPropagation()}
-              className="absolute -right-1 -bottom-1 inline-flex h-8 w-8 items-center justify-center rounded-full border bg-white text-zinc-900 shadow-sm transition-all duration-200 gold-border active:scale-95 active:opacity-80 dark:bg-zinc-950 dark:text-zinc-100 group-hover:bg-[rgba(212,175,55,0.10)]"
+              className="absolute -right-1 -bottom-1 z-20 inline-flex h-8 w-8 items-center justify-center rounded-full border bg-white text-zinc-900 shadow-sm transition-all duration-200 gold-border active:scale-95 active:opacity-80 dark:bg-zinc-950 dark:text-zinc-100 group-hover:bg-[rgba(212,175,55,0.10)]"
               aria-label="Edit profile photos"
               title="Edit profile photos"
             >
@@ -144,7 +145,7 @@ export default function AccountHero({
                 <path
                   d="M12 5v14M5 12h14"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                   strokeLinecap="round"
                 />
               </svg>
