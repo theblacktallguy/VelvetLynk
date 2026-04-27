@@ -6,13 +6,22 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
+  background: #0b0f1a; /* use VelvetLynk main background color */
+  overscroll-behavior-y: none;
 }
 
 /* Base light theme */
 body {
   background: #ffffff;
   color: #18181b; /* zinc-900 */
+  overflow-x: hidden;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px;
 }
 
 /* Luxury subtle pattern (very faint) */

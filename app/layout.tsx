@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-[#0b0f1a] text-white">
         <Providers>
           <Suspense fallback={null}>
             <RouteLoadingProvider>
